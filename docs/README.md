@@ -115,7 +115,12 @@ The primary target audience for this application includes:
 
 I implement a refined hybrid data storage solution that separates content and logic, using Google Sheets for task content and local JSON files for application logic and user data.
 
-For a detailed breakdown of our data model, including table structures, ER diagram, and a comprehensive data dictionary, please refer to my [Data Model Documentation](data_model_documentation.md).
+Detailed breakdown of the data model:
+- Table structures,
+- ER-Diagram,
+- and a comprehensive data dictionary,
+
+please refer to my [Data Model Documentation](data-model-documentation).
 
 ### Google Sheets (Cloud Storage)
 
