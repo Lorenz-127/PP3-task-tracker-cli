@@ -10,12 +10,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added - 27/07/2024
 
-- Initial project setup
+- Initial project setup - 27/07/2024
 
-- Basic README.md structure
-- all the planning files
+- Basic README.md structure - 27/07/2024
+- All the planning files - 27/07/2024
+- CHANGELOG.md file - 27/07/2024
 
-- CHANGELOG.md file
+- Enhanced styling for index and layout.html - 29/07/2024
 
 
 ## [0.1.0] - date
