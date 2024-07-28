@@ -6,9 +6,9 @@ This combined roadmap and checklist ensures that I'm addressing all the learning
 ## Phase 1: Project Setup and Basic Functionality (Pass Level)
 
 1. Initial Project Setup
-   - [ ] Set up Git repository (LO8: 8.1)
-   - [ ] Create initial project structure
-   - [ ] Set up Gitpod workspace
+   - [x] Set up Git repository (LO8: 8.1)
+   - [x] Create initial project structure
+   - [x] Set up Gitpod workspace
    - [ ] Write code that passes through [CI Python Linter](https://pep8ci.herokuapp.com/) (LO1: 1.1)
 
 2. Basic Data Model Implementation
