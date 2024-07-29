@@ -29,7 +29,7 @@ This combined roadmap and checklist ensures that I'm addressing all the learning
    - [ ] Document basic manual testing procedures (LO5: 5.1)
 
 5. Deployment - Pass Level
-   - [ ] Deploy basic application to a cloud-based platform (e.g., Heroku) (LO9: 9.1)
+   - [x] Deploy basic application to a cloud-based platform (e.g., Heroku) (LO9: 9.1)
    - [ ] Ensure deployed application is free of commented-out code (LO9: 9.2)
 
 ## Phase 2: Enhanced Functionality and Code Quality (Merit Level)

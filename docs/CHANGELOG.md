@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - CHANGELOG.md file - 27/07/2024
 
 - Enhanced styling for index and layout.html - 29/07/2024
+- Deployed App on Heroku - 29/07/2024
 
 
 ## [0.1.0] - date
