@@ -83,6 +83,35 @@ my implementation plan follows the same three-phase structure as my feature plan
 2. Merit Level Implementation
 3. Distinction Level Implementation
 
+### Basic file structure
+
+<details>
+<summary>Initial File Structure</summary>
+<img src="https://github.com/Lorenz-127/PP3-task-tracker-cli/blob/main/resources/file_structure.png/workspace/PP3-task-tracker-cli/resources/file_structure.png">
+</details>
+
+- Explanation of the structure:
+
+1. `src/`: This directory contains all the source code for your application.
+   - `main.py`: The entry point of your application.
+   - `database/`: Handles all database operations.
+   - `cli/`: Contains code for the command-line interface.
+   - `tasks/`: Manages task-related operations.
+   - `utils/`: Houses utility functions and error handling.
+   - `config.py`: Stores configuration variables.
+
+2. `tests/`: Contains all your test files, organized to mirror the `src/` structure.
+
+3. `docs/`: Holds project documentation.
+
+4. `resources/`: Stores any additional resources, like SQL schemas.
+
+5. `requirements.txt`: Lists all Python dependencies.
+
+6. `setup.py`: For packaging your project.
+
+7. `run.py`: A simple script to run your application.
+
 ## Testing Strategy
 my testing strategy evolves through the development phases:
 - Implement basic manual testing procedures for code validation (Pass level)
