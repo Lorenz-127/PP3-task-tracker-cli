@@ -87,7 +87,9 @@ my implementation plan follows the same three-phase structure as my feature plan
 
 <details>
 <summary>Initial File Structure</summary>
-<img src="https://github.com/Lorenz-127/PP3-task-tracker-cli/blob/main/resources/file_structure.png/workspace/PP3-task-tracker-cli/resources/file_structure.png">
+
+<img src="https://github.com/Lorenz-127/PP3-task-tracker-cli/blob/main/resources/initial_file_structure.png">
+
 </details>
 
 - Explanation of the structure:
