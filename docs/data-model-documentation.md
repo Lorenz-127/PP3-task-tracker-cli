@@ -64,7 +64,7 @@ This data model represents a hybrid approach where task content is stored in Goo
 
 ## ER Diagram
 
-![ER-Diagram](/docs/ER-Diagramm.drawio.png)
+![ER-Diagram](/resources/ER-Diagramm.drawio.png)
 
 ## Data Dictionary
 
