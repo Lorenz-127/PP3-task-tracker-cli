@@ -88,7 +88,7 @@ my implementation plan follows the same three-phase structure as my feature plan
 <details>
 <summary>Initial File Structure</summary>
 
-<img src="/resources/initial_file_structure.png">
+<img src="./resources/initial_file_structure.png">
 
 </details>
 
