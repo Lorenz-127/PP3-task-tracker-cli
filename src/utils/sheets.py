@@ -55,3 +55,16 @@ class GoogleSheets:
         worksheet = cls.get_worksheet(sheet_name)
         worksheet.append_row(row_data)
 
+    @classmethod
+    def update_cell(cls, sheet_name: str, row: int, col: int, value: Any) -> None:
+        """
+        Update a specific cell in a worksheet.
+
+        :param sheet_name: The name of the worksheet.
+        :param row: The row number of the cell to update.
+        :param col: The column number of the cell to update.
+        :param value: The new value for the cell.
+        """
+        worksheet = cls.get_worksheet(sheet_name)
+        worksheet.update_cell(row, col, value)
+
