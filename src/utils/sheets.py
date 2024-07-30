@@ -33,3 +33,14 @@ class GoogleSheets:
         except gspread.exceptions.WorksheetNotFound:
             raise ValueError(f"Worksheet '{sheet_name}' not found.")
 
+    @classmethod
+    def get_all_records(cls, sheet_name: str) -> List[Dict[str, Any]]:
+        """
+        Retrieve all records from a specific worksheet.
+
+        :param sheet_name: The name of the worksheet.
+        :return: A list of dictionaries containing all records.
+        """
+        worksheet = cls.get_worksheet(sheet_name)
+        return worksheet.get_all_records()
+
