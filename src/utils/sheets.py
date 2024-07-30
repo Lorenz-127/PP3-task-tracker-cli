@@ -68,3 +68,21 @@ class GoogleSheets:
         worksheet = cls.get_worksheet(sheet_name)
         worksheet.update_cell(row, col, value)
 
+    @classmethod
+    def find_row(cls, sheet_name: str, search_val: Any, col: int = 1) -> int:
+        """
+        Find a row in a worksheet based on a search value in a specific column.
+
+        :param sheet_name: The name of the worksheet.
+        :param search_val: The value to search for.
+        :param col: The column to search in (default is 1, the first column).
+        :return: The row number of the found cell.
+        :raises ValueError: If the search value is not found.
+        """
+        worksheet = cls.get_worksheet(sheet_name)
+        try:
+            cell = worksheet.find(str(search_val), in_column=col)
+            return cell.row
+        except gspread.exceptions.CellNotFound:
+            raise ValueError(f"Value '{search_val}' not found in column {col}.")
+
