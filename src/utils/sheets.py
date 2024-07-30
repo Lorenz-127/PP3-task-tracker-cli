@@ -44,3 +44,14 @@ class GoogleSheets:
         worksheet = cls.get_worksheet(sheet_name)
         return worksheet.get_all_records()
 
+    @classmethod
+    def append_row(cls, sheet_name: str, row_data: List[Any]) -> None:
+        """
+        Append a row to a specific worksheet.
+
+        :param sheet_name: The name of the worksheet.
+        :param row_data: The data to be appended as a new row.
+        """
+        worksheet = cls.get_worksheet(sheet_name)
+        worksheet.append_row(row_data)
+
