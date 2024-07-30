@@ -86,3 +86,14 @@ class GoogleSheets:
         except gspread.exceptions.CellNotFound:
             raise ValueError(f"Value '{search_val}' not found in column {col}.")
 
+    @classmethod
+    def delete_row(cls, sheet_name: str, row: int) -> None:
+        """
+        Delete a specific row from a worksheet.
+
+        :param sheet_name: The name of the worksheet.
+        :param row: The row number to delete.
+        """
+        worksheet = cls.get_worksheet(sheet_name)
+        worksheet.delete_row(row)
+        
