@@ -1,10 +1,10 @@
 import gspread
 from google.oauth2.service_account import Credentials
-
+from typing import List, Dict, Any
 
 class GoogleSheets:
     """
-    Class For the Worksheet functions
+    Class for managing Google Sheets operations.
     """
 
     SCOPE = [
@@ -20,18 +20,16 @@ class GoogleSheets:
     SHEET = GSPREAD_CLIENT.open("task_tracker")
 
     @classmethod
-    def get_sheet(cls, sheet_name):
+    def get_worksheet(cls, sheet_name: str) -> gspread.Worksheet:
         """
-        Method to get the sheet needed
+        Retrieve a specific worksheet from the Google Sheet.
 
-        :param sheet_name: the name of the sheet from the worksheet
-        :return: the sheet to work with as worksheet
+        :param sheet_name: The name of the worksheet.
+        :return: The requested worksheet.
+        :raises ValueError: If the worksheet doesn't exist.
         """
-        worksheet = cls.SHEET.worksheet(sheet_name)
-        return worksheet
+        try:
+            return cls.SHEET.worksheet(sheet_name)
+        except gspread.exceptions.WorksheetNotFound:
+            raise ValueError(f"Worksheet '{sheet_name}' not found.")
 
-        # todo api error handling
-
-        # todo exception handling
-        
-        # with restart of the program
