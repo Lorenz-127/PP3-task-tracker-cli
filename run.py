@@ -97,7 +97,13 @@ class TodoCLI:
 
     def show_todos(self):
         """
-        Display all the todos in a table format.
+        Display all todos in a formatted table.
+
+        This method retrieves all todos from the database and displays them
+        in a rich, formatted table. The table includes columns for the task
+        number, todo description, category (color-coded), due date, date added,
+        date completed, and status. If no todos are found, it displays a message
+        indicating this.
         """
         tasks = get_all_todos()
         if not tasks:
