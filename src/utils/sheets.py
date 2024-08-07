@@ -159,3 +159,12 @@ class GoogleSheets:
         self.update_local_task(synced_task)
         self.update_cloud_task(synced_task)
 
+    def get_cached_data(self, sheet_name: str, max_age: int = 3600) -> Optional[List[Dict[str, Any]]]:
+        """
+        Retrieve cached data for a sheet if available and not expired.
+
+        :param sheet_name: The name of the sheet.
+        :param max_age: Maximum age of the cache in seconds.
+        :return: Cached data if available, None otherwise.
+        """
+        # Implementation here
