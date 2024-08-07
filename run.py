@@ -54,11 +54,6 @@ class TodoCLI:
         )
         return menu.show()
 
-        # Display the styled instruction text after the menu
-        if menu_type == "main":
-            console.print(Panel(title, style="yellow italic", expand=False))
-
-        return result
 
     def add_todo(self):
         """
