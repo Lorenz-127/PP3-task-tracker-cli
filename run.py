@@ -27,7 +27,7 @@ class TodoCLI:
             "confirm": ["Yes", "No"],
         }
 
-    def display_menu(self):
+    def display_menu(self, menu_type: str, title: str) -> int:
         """
         Display a menu of the specified type and return the selected option.
 
@@ -38,6 +38,27 @@ class TodoCLI:
         Returns:
             int: The index of the selected menu item.
         """
+        # Main menu title
+        main_menu_title = "\nTodo CLI - Main Menu\n"
+
+        menu = TerminalMenu(
+            self.menu_items[menu_type],
+            title=main_menu_title,
+            menu_highlight_style=("fg_green",),
+            cycle_cursor=True,
+            clear_screen=True,
+            skip_empty_entries=True,  # Skip empty strings in the menu
+            show_search_hint=False,  # Disable search hint
+            status_bar=title,  # Use the title as a status bar instead
+            status_bar_style=("fg_yellow", "bold"),
+        )
+        return menu.show()
+
+        # Display the styled instruction text after the menu
+        if menu_type == "main":
+            console.print(Panel(title, style="yellow italic", expand=False))
+
+        return result
 
     def add_todo(self):
         """
