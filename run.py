@@ -14,6 +14,18 @@ class TodoCLI:
         """
         Initialize the TodoCLI with menu items.
         """
+        self.menu_items = {
+            "main": [
+                "[1] Add Todo",
+                "[2] Show Todo's",
+                "[3] Update Todo",
+                "[4] Complete Todo",
+                "[5] Delete Todo",
+                "",
+                "[q] Exit",
+            ],
+            "confirm": ["Yes", "No"],
+        }
 
     def display_menu(self):
         """
