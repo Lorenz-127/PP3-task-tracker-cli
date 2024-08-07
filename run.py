@@ -291,8 +291,37 @@ class TodoCLI:
         """
         Run the Todo CLI application with a menu-driven interface.
         """
+        while True:
+            choice = self.display_menu(
+                "main",
+                "\nUse the arrow keys or the displayed selectors to navigate, Enter to select",
+            )
+            if choice == 0:  # Title
+                continue
+            elif choice == 1:  # Empty space
+                continue
+            elif choice == 2:
+                self.add_todo()
+            elif choice == 3:
+                self.show_todos()
+            elif choice == 4:
+                self.update_todo()
+            elif choice == 5:
+                self.complete_todo()
+            elif choice == 6:
+                self.delete_todo()
+            elif choice == 7:  # Empty space
+                continue
+            elif choice == 8 or choice is None:  # Exit or no selection
+                if self.confirm_action("\nAre you sure you want to exit?\n"):
+                    console.print(
+                        "\n[bold green]Thank you for using Todo CLI. Goodbye![/bold green]\n"
+                    )
+                    break
 
-@app.command()
+            console.input("\nPress Enter to continue...")
+
+
 def main():
     """
     Run the Todo CLI application.
