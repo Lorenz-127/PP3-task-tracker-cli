@@ -139,7 +139,46 @@ class TodoCLI:
         )
 
     def update_todo(self):
-        """ Prompt the user to update a todo. """
+        """
+        Prompt the user to update an existing todo.
+
+        This method displays a list of existing todos and allows the user to select
+        one for updating. The user can modify the task description, category, and
+        due date of the selected todo. If no input is provided for a field, the
+        existing value is retained. The method handles cases where no todos exist
+        and provides error handling for the update process.
+        """
+        todos = get_all_todos()
+        if not todos:
+            console.print("\n[bold yellow]No todos found.[/bold yellow]\n")
+            return
+
+        options = [f"{todo.task} ({todo.category})" for todo in todos]
+        index = self.display_menu("main", "Select a todo to update")
+        if index is None:
+            return
+
+        selected_todo = todos[index]
+        console.print(Panel.fit(f"Updating: {selected_todo.task}", style="bold yellow"))
+        task = (
+            console.input(
+                f"\n[bold cyan]Enter the new task (current: {selected_todo.task}):[/bold cyan] \n"
+            ).strip()
+            or None
+        )
+        category = (
+            console.input(
+                f"\n[bold cyan]Enter the new category (current: {selected_todo.category}):[/bold cyan] \n"
+            ).strip()
+            or None
+        )
+        due_date = self.get_due_date(current=selected_todo.due_date)
+
+        try:
+            update_todo(index, task, category, due_date)
+            console.print("\n[bold green]Todo updated successfully![/bold green]\n")
+        except Exception as e:
+            console.print(f"\n[bold red]Error updating todo: {str(e)}[/bold red]\n")
 
     def get_due_date(self):
         """
