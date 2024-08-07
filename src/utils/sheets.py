@@ -146,3 +146,16 @@ class GoogleSheets:
         """
         worksheet = self.get_worksheet(sheet_name)
         return worksheet.col_values(col)
+
+    def sync_task(self, task_id: int) -> None:
+        """
+        Synchronize a task between local storage and Google Sheets.
+
+        :param task_id: The ID of the task to synchronize.
+        """
+        local_task = self.get_local_task(task_id)
+        cloud_task = self.get_cloud_task(task_id)
+        synced_task = self.resolve_sync_conflict(local_task, cloud_task)
+        self.update_local_task(synced_task)
+        self.update_cloud_task(synced_task)
+
