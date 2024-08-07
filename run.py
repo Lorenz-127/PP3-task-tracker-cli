@@ -235,6 +235,24 @@ class TodoCLI:
         """
         Prompt the user to delete an existing todo task.
         """
+        todos = get_all_todos()
+        if not todos:
+            console.print("\n[bold yellow]No todos found.[/bold yellow]\n")
+            return
+
+        options = [f"{todo.task} ({todo.category})" for todo in todos]
+        index = self.display_menu("main", "Select a todo to delete")
+        if index is None:
+            return
+
+        if self.confirm_action("\nAre you sure you want to delete this todo?\n"):
+            try:
+                delete_todo(index)
+                console.print("\n[bold green]Todo deleted successfully![/bold green]\n")
+            except Exception as e:
+                console.print(f"\n[bold red]Error deleting todo: {str(e)}[/bold red]\n")
+        else:
+            console.print("\n[bold yellow]Deletion cancelled.[/bold yellow]\n")
 
     def confirm_action(self):
         """
