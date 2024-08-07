@@ -208,6 +208,28 @@ class TodoCLI:
         """
         Prompt the user to mark a todo task as complete.
         """
+        todos = [todo for todo in get_all_todos() if todo.status != 2]
+        if not todos:
+            console.print("\n[bold yellow]No incomplete todos found.[/bold yellow]\n")
+            return
+
+        options = [f"{todo.task} ({todo.category})" for todo in todos]
+        index = self.display_menu("main", "Select a todo to mark as complete")
+        if index is None:
+            return
+
+        if self.confirm_action(
+            "\nAre you sure you want to mark this todo as complete?\n"
+        ):
+            try:
+                complete_todo(index)
+                console.print("\n[bold green]Todo marked as complete![/bold green]\n")
+            except Exception as e:
+                console.print(
+                    f"\n[bold red]Error completing todo: {str(e)}[/bold red]\n"
+                )
+        else:
+            console.print("\n[bold yellow]Action cancelled.[/bold yellow]\n")
 
     def delete_todo(self):
         """
