@@ -279,6 +279,13 @@ class TodoCLI:
         Returns:
             str: The color associated with the category.
         """
+        colors = {
+            "CI-Stuff": "orange",
+            "Coding": "blue",
+            "Errands": "gray",
+            "Study": "green",
+        }
+        return colors.get(category, "white")
 
     def run(self):
         """
