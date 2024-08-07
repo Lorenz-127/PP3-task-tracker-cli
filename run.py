@@ -190,6 +190,19 @@ class TodoCLI:
         Returns:
             str: The entered due date.
         """
+        while True:
+            date_str = console.input(
+                f"\n[bold cyan]Enter due date (YYYY-MM-DD) or press Enter to skip{' or keep current' if current else ''}:[/bold cyan] \n"
+            ).strip()
+            if not date_str:
+                return current
+            try:
+                due_date = datetime.strptime(date_str, "%Y-%m-%d").date()
+                return due_date.isoformat()
+            except ValueError:
+                console.print(
+                    "\n[bold red]Invalid date format. Please use YYYY-MM-DD.[/bold red]\n"
+                )
 
     def complete_todo(self):
         """
