@@ -62,7 +62,11 @@ class TodoCLI:
 
     def add_todo(self):
         """
-        Prompt the user to update an existing todo task.
+        Prompt the user to add a new todo task.
+
+        This method guides the user through entering a task description,
+        category, and due date for a new todo item. It performs input
+        validation and inserts the new todo into the database.
         """
         console.print(Panel.fit("\nAdd New Todo", style="bold green"))
         while True:
@@ -95,6 +99,38 @@ class TodoCLI:
         """
         Display all the todos in a table format.
         """
+        tasks = get_all_todos()
+        if not tasks:
+            console.print("\n[bold yellow]No To-Do's found.[/bold yellow]\n")
+            return
+
+        table = Table(show_header=True, header_style="bold magenta")
+        table.add_column("#", style="dim", width=6, justify="center")
+        table.add_column("Todo", min_width=20)
+        table.add_column("Category", min_width=12, justify="center")
+        table.add_column("Due Date", min_width=10)
+        table.add_column("Added", min_width=10)
+        table.add_column("Completed", min_width=10)
+        table.add_column("Status", min_width=8, justify="center")
+
+        for idx, task in enumerate(tasks, start=1):
+            c = self.get_category_color(task.category)
+            status = "✅" if task.status == 2 else "❌"
+            date_completed = task.date_completed[:10] if task.date_completed else "-"
+            due_date = task.due_date[:10] if task.due_date else "-"
+            table.add_row(
+                str(idx),
+                task.task,
+                f"[{c}]{task.category}[/{c}]",
+                due_date,
+                task.date_added[:10],
+                date_completed,
+                status,
+            )
+
+        console.print(
+            Panel(table, title="\n[bold]Your Todo List[/bold]\n", expand=False)
+        )
 
     def update_todo(self):
         """ Prompt the user to update a todo. """
