@@ -200,7 +200,7 @@ class TodoCLI:
                     "\n[bold red]Invalid date format. Please use YYYY-MM-DD.[/bold red]\n"
                 )
 
-    def complete_todo(self):
+    def complete_todo(self, message):
         """
         Prompt the user to mark a todo task as complete.
         """
