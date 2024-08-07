@@ -64,6 +64,32 @@ class TodoCLI:
         """
         Prompt the user to update an existing todo task.
         """
+        console.print(Panel.fit("\nAdd New Todo", style="bold green"))
+        while True:
+            task = console.input("\n[bold cyan]Enter the task:[/bold cyan] ").strip()
+            if task:
+                break
+            console.print(
+                "\n[bold red]Task cannot be empty. Please try again.[/bold red]"
+            )
+
+        while True:
+            category = console.input(
+                "\n[bold cyan]Enter the category:[/bold cyan] "
+            ).strip()
+            if category:
+                break
+            console.print(
+                "\n[bold red]Category cannot be empty. Please try again.[/bold red]"
+            )
+
+        due_date = self.get_due_date()
+        todo = Todo(task, category, due_date=due_date)
+        try:
+            insert_todo(todo)
+            console.print("\n[bold green]Todo added successfully![/bold green]\n")
+        except Exception as e:
+            console.print(f"\n[bold red]Error adding todo: {str(e)}[/bold red]\n")
 
     def show_todos(self):
         """
