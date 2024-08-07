@@ -8,6 +8,7 @@ from model import Todo
 from database import get_all_todos, delete_todo, insert_todo, complete_todo, update_todo
 from datetime import datetime, date
 
+console = Console()
 
 class TodoCLI:
     def __init__(self):
