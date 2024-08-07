@@ -296,23 +296,19 @@ class TodoCLI:
                 "main",
                 "\nUse the arrow keys or the displayed selectors to navigate, Enter to select",
             )
-            if choice == 0:  # Title
-                continue
-            elif choice == 1:  # Empty space
-                continue
-            elif choice == 2:
+            if choice == 0:
                 self.add_todo()
-            elif choice == 3:
+            elif choice == 1:
                 self.show_todos()
-            elif choice == 4:
+            elif choice == 2:
                 self.update_todo()
-            elif choice == 5:
+            elif choice == 3:
                 self.complete_todo()
-            elif choice == 6:
+            elif choice == 4:
                 self.delete_todo()
-            elif choice == 7:  # Empty space
+            elif choice == 5:  # Empty space
                 continue
-            elif choice == 8 or choice is None:  # Exit or no selection
+            elif choice == 6 or choice is None:  # Exit or no selection
                 if self.confirm_action("\nAre you sure you want to exit?\n"):
                     console.print(
                         "\n[bold green]Thank you for using Todo CLI. Goodbye![/bold green]\n"
