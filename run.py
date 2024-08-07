@@ -264,6 +264,9 @@ class TodoCLI:
         Returns:
             bool: True if the user confirms, False otherwise.
         """
+        console.print(f"[bold yellow]{message}[/bold yellow]")
+        choice = self.display_menu("confirm", "\nConfirm Action")
+        return choice == 0  # "Yes" is the first option
 
     @staticmethod
     def get_category_color(category):
