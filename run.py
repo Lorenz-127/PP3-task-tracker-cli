@@ -176,7 +176,7 @@ class TodoCLI:
         except Exception as e:
             console.print(f"\n[bold red]Error updating todo: {str(e)}[/bold red]\n")
 
-    def get_due_date(self):
+    def get_due_date(self, current=None):
         """
         Prompt the user to enter a due date for a todo task.
 
