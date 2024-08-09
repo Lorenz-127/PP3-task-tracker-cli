@@ -220,3 +220,26 @@ class TodoCLI:
         except Exception as e:
             console.print(f"\n[bold red]Error completing todo: {str(e)}[/bold red]")
 
+    def delete_todo(self):
+        """Delete a todo item."""
+        try:
+            todos = self.gs.get_all_todos()
+            if not todos:
+                console.print("\n[bold yellow]No todos found.[/bold yellow]")
+                return
+
+            selected_todo = self.display_todo_selection_menu(todos, "delete")
+            if selected_todo is None:
+                console.print("\n[bold yellow]Deletion cancelled.[/bold yellow]")
+                return
+
+            if self.confirm_action(
+                f"\nAre you sure you want to delete '{selected_todo.task}'?"
+            ):
+                self.gs.delete_todo(selected_todo.task_id)
+                console.print("\n[bold green]Todo deleted successfully![/bold green]")
+            else:
+                console.print("\n[bold yellow]Deletion cancelled.[/bold yellow]")
+        except Exception as e:
+            console.print(f"\n[bold red]Error deleting todo: {str(e)}[/bold red]")
+
