@@ -124,8 +124,8 @@ class TodoCLI:
                 return
 
             table = Table(show_header=True, header_style="bold magenta")
-            table.add_column("ID", style="dim", width=6, justify="center")
-            table.add_column("Todo", min_width=20)
+            table.add_column("ID", style="dim", width=4, justify="right")
+            table.add_column("Todo", min_width=22)
             table.add_column("Category", min_width=12, justify="center")
             table.add_column("Added", min_width=10, justify="center")
             table.add_column("Due Date", min_width=10, justify="center")
