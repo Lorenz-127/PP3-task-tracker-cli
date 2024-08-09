@@ -195,3 +195,28 @@ class TodoCLI:
         except Exception as e:
             console.print(f"\n[bold red]Error updating todo: {str(e)}[/bold red]")
 
+    def complete_todo(self):
+        """Mark a todo item as completed."""
+        try:
+            todos = [
+                todo for todo in self.gs.get_all_todos() if not todo.date_completed
+            ]
+            if not todos:
+                console.print("\n[bold yellow]No incomplete todos found.[/bold yellow]")
+                return
+
+            selected_todo = self.display_todo_selection_menu(todos, "complete")
+            if selected_todo is None:
+                console.print("\n[bold yellow]Completion cancelled.[/bold yellow]")
+                return
+
+            if self.confirm_action(
+                f"\nAre you sure you want to mark '{selected_todo.task}' as complete?"
+            ):
+                self.gs.complete_todo(selected_todo.task_id)
+                console.print("\n[bold green]Todo marked as complete![/bold green]")
+            else:
+                console.print("\n[bold yellow]Action cancelled.[/bold yellow]")
+        except Exception as e:
+            console.print(f"\n[bold red]Error completing todo: {str(e)}[/bold red]")
+
