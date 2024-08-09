@@ -30,3 +30,29 @@ class TodoCLI:
         }
         self.gs = TodoGoogleSheets()
 
+    def display_menu(self, menu_type: str, title: str) -> int:
+        """
+        Display a menu of the specified type and return the selected option.
+
+        Args:
+            menu_type (str): The type of menu to display.
+            title (str): The title of the menu.
+
+        Returns:
+            int: The index of the selected menu item.
+        """
+        main_menu_title = "\nTodo CLI - Main Menu\n"
+
+        menu = TerminalMenu(
+            self.menu_items[menu_type],
+            title=main_menu_title,
+            menu_highlight_style=("fg_green",),
+            cycle_cursor=True,
+            clear_screen=True,
+            skip_empty_entries=True,
+            show_search_hint=False,
+            status_bar=title,
+            status_bar_style=("fg_yellow", "bold"),
+        )
+        return menu.show()
+
