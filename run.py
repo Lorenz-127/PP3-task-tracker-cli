@@ -38,10 +38,10 @@ def start_app():
         user_input = console.input().strip().lower()
         
         if user_input == 'q':
-            console.print("[bold red]Exiting Todo CLI. Goodbye![/bold red]")
+            console.print("[bold red]Exiting Task Tracker CLI. Goodbye![/bold red]")
             break
         elif user_input == '':
-            console.print("[bold green]Starting Todo CLI...[/bold green]")
+            console.print("[bold green]Starting Task Tracker CLI...[/bold green]")
             TodoCLI().run()
             break
         else:

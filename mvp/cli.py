@@ -89,7 +89,7 @@ class TodoCLI:
         
         index = menu.show()
         return todos[index] if index is not None else None
-        
+
     def display_category_menu(self) -> Optional[str]:
         """
         Display a menu to select a category and return the selected category.
@@ -349,7 +349,7 @@ class TodoCLI:
             elif choice == 7 or choice is None:
                 if self.confirm_action("\nAre you sure you want to exit?"):
                     console.print(
-                        "\n[bold green]Thank you for using Todo CLI. Goodbye![/bold green]"
+                        "\n[bold green]Thank you for using Task Tracker CLI. Goodbye![/bold green]"
                     )
                     break
 
