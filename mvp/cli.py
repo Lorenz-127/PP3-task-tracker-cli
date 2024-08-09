@@ -274,3 +274,35 @@ class TodoCLI:
         except Exception as e:
             console.print(f"\n[bold red]Error fetching statistics: {str(e)}[/bold red]")
 
+    def get_input(self, prompt: str, required: bool = False) -> Optional[str]:
+        """Get user input with optional requirement."""
+        while True:
+            value = console.input(f"\n[bold cyan]{prompt}:[/bold cyan] ").strip()
+            if value or not required:
+                return value or None
+            console.print(
+                "\n[bold red]This field cannot be empty. Please try again.[/bold red]"
+            )
+
+    def get_due_date(self, current: Optional[str] = None) -> Optional[str]:
+        """Get due date input from the user."""
+        while True:
+            date_str = self.get_input(
+                f"Enter due date (YYYY-MM-DD) or press Enter to skip{' or keep current' if current else ''}"
+            )
+            if not date_str:
+                return current
+            try:
+                due_date = datetime.strptime(date_str, "%Y-%m-%d").date()
+                return due_date.isoformat()
+            except ValueError:
+                console.print(
+                    "\n[bold red]Invalid date format. Please use YYYY-MM-DD.[/bold red]"
+                )
+
+    def confirm_action(self, message: str) -> bool:
+        """Confirm an action with the user."""
+        console.print(f"[bold yellow]{message}[/bold yellow]")
+        choice = self.display_menu("confirm", "\nConfirm Action")
+        return choice == 0  # "Yes" is the first option
+
