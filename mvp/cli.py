@@ -318,3 +318,29 @@ class TodoCLI:
         }
         return colors.get(category, "white")
 
+    def run(self):
+        """Run the main CLI loop."""
+        while True:
+            choice = self.display_menu(
+                "main", "\nUse arrow keys to navigate, Enter to select"
+            )
+            if choice == 0:
+                self.add_todo()
+            elif choice == 1:
+                self.show_todos()
+            elif choice == 2:
+                self.update_todo()
+            elif choice == 3:
+                self.complete_todo()
+            elif choice == 4:
+                self.delete_todo()
+            elif choice == 5:
+                self.show_statistics()
+            elif choice == 7 or choice is None:
+                if self.confirm_action("\nAre you sure you want to exit?"):
+                    console.print(
+                        "\n[bold green]Thank you for using Todo CLI. Goodbye![/bold green]"
+                    )
+                    break
+
+            console.input("\nPress Enter to continue...")
