@@ -1,8 +1,11 @@
-import gspread
-from google.oauth2.service_account import Credentials
 from typing import List, Dict, Any, Optional
+import os
+from google.auth.exceptions import GoogleAuthError
+import gspread
+from gspread.exceptions import SpreadsheetNotFound
+from google.oauth2.service_account import Credentials
+from typing import List
 from .model import Todo
-from datetime import datetime
 
 
 class TodoGoogleSheets:
@@ -14,38 +17,74 @@ class TodoGoogleSheets:
         "https://www.googleapis.com/auth/drive",
     ]
 
-    def __init__(self, creds_file: str = "creds.json"):
+    def __init__(self, spreadsheet_name="task_tracker"):
         """
         Initialize the TodoGoogleSheets class.
 
-        :param creds_file: Path to the credentials JSON file (default: "creds.json")
+        Args:
+            spreadsheet_name (str): Name of the Google Sheets spreadsheet to use.
+
+        Raises:
+            FileNotFoundError: If the credentials file is not found.
+            GoogleAuthError: If authentication with Google fails.
+            SpreadsheetNotFound: If the specified spreadsheet cannot be found or accessed.
         """
-        self.creds = Credentials.from_service_account_file(creds_file)
-        self.scoped_creds = self.creds.with_scopes(self.SCOPE)
-        self.client = gspread.authorize(self.scoped_creds)
-        self.sheet = self.client.open("task_tracker")
-        self.tasks_worksheet = self.sheet.worksheet("tasks")
-        self.categories_worksheet = self.sheet.worksheet("categories")
+        try:
+            creds_file = os.environ.get("GOOGLE_CREDENTIALS_FILE", "creds.json")
+            self.creds = Credentials.from_service_account_file(creds_file)
+            self.scoped_creds = self.creds.with_scopes(self.SCOPE)
+            self.client = gspread.authorize(self.scoped_creds)
+
+            try:
+                self.sheet = self.client.open(spreadsheet_name)
+            except SpreadsheetNotFound:
+                raise SpreadsheetNotFound(
+                    f"Spreadsheet '{spreadsheet_name}' not found or not accessible. "
+                    f"Please check the spreadsheet name and your permissions."
+                )
+
+            self.tasks_worksheet = self.sheet.worksheet("tasks")
+            self.categories_worksheet = self.sheet.worksheet("categories")
+
+        except FileNotFoundError:
+            raise FileNotFoundError(
+                "Google credentials file not found. Please check your environment variables."
+            )
+        except GoogleAuthError as e:
+            raise GoogleAuthError(f"Failed to authenticate with Google: {str(e)}")
 
     def get_all_todos(self) -> List[Todo]:
-        """Retrieve all todos from the Google Sheet."""
-        data = self.tasks_worksheet.get_all_records()
-        categories = {
-            row["category_id"]: row["category_name"]
-            for row in self.categories_worksheet.get_all_records()
-        }
-        return [
-            Todo(
-                task_id=item["task_id"],
-                task=item["task"],
-                category=categories[item["category_id"]],
-                date_added=item["date_added"],
-                due_date=item["due_date"],
-                date_completed=item["date_completed"],
-                position=item["position"],
+        """
+        Retrieve all todos from the Google Sheet.
+
+        Returns:
+            List[Todo]: A list of Todo objects representing all tasks.
+
+        Raises:
+            gspread.exceptions.APIError: If there's an error communicating with Google Sheets API.
+        """
+        try:
+            data = self.tasks_worksheet.get_all_records()
+            categories = {
+                row["category_id"]: row["category_name"]
+                for row in self.categories_worksheet.get_all_records()
+            }
+            return [
+                Todo(
+                    task_id=item["task_id"],
+                    task=item["task"],
+                    category=categories[item["category_id"]],
+                    date_added=item["date_added"],
+                    due_date=item["due_date"],
+                    date_completed=item["date_completed"],
+                    position=item["position"],
+                )
+                for item in data
+            ]
+        except gspread.exceptions.APIError as e:
+            raise gspread.exceptions.APIError(
+                f"Failed to fetch todos from Google Sheets: {str(e)}"
             )
-            for item in data
-        ]
 
     def insert_todo(self, todo: Todo) -> None:
         """Insert a new todo into the Google Sheet."""

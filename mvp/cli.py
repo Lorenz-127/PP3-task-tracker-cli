@@ -6,6 +6,8 @@ from simple_term_menu import TerminalMenu
 from .model import Todo
 from .google_sheets_db import TodoGoogleSheets
 from datetime import datetime
+import sys
+from gspread.exceptions import SpreadsheetNotFound
 
 console = Console()
 
@@ -28,7 +30,47 @@ class TodoCLI:
             ],
             "confirm": ["Yes", "No"],
         }
-        self.gs = TodoGoogleSheets()
+        try:
+            self.gs = TodoGoogleSheets()
+        except SpreadsheetNotFound as e:
+            console.print(
+                Panel.fit(
+                    f"[bold red]Error:[/bold red] {str(e)}\n\n"
+                    "The required Google Sheets spreadsheet could not be found or accessed.\n"
+                    "Please check the following:\n"
+                    "1. The spreadsheet 'task_tracker' exists in your Google Drive\n"
+                    "2. You have the correct permissions to access it\n"
+                    "3. Your Google API credentials are correct and up to date\n\n"
+                    "If the problem persists, please contact the system administrator.",
+                    title="Google Sheets Connection Error",
+                    border_style="red",
+                )
+            )
+            sys.exit(1)
+        except Exception as e:
+            console.print(
+                Panel.fit(
+                    f"[bold red]An unexpected error occurred:[/bold red]\n{str(e)}\n\n"
+                    "This could be due to:\n"
+                    "1. Network connectivity issues\n"
+                    "2. Invalid or expired Google API credentials\n"
+                    "3. Insufficient permissions\n\n"
+                    "Please check your internet connection and configuration.\n"
+                    "If the problem persists, please contact the system administrator.",
+                    title="Initialization Error",
+                    border_style="red",
+                )
+            )
+            sys.exit(1)
+
+        console.print(
+            Panel.fit(
+                "[green]Successfully connected to Google Sheets![/green]\n"
+                "You can now start managing your tasks.",
+                title="Initialization Complete",
+                border_style="green",
+            )
+        )
 
     def display_menu(self, menu_type: str, title: str) -> int:
         """
