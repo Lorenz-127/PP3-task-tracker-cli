@@ -170,3 +170,28 @@ class TodoCLI:
         except Exception as e:
             console.print(f"\n[bold red]Error fetching todos: {str(e)}[/bold red]")
 
+    def update_todo(self):
+        """Update an existing todo item."""
+        try:
+            todos = self.gs.get_all_todos()
+            if not todos:
+                console.print("\n[bold yellow]No todos found.[/bold yellow]")
+                return
+
+            selected_todo = self.display_todo_selection_menu(todos, "update")
+            if selected_todo is None:
+                console.print("\n[bold yellow]Update cancelled.[/bold yellow]")
+                return
+
+            console.print(
+                Panel.fit(f"Updating: {selected_todo.task}", style="bold yellow")
+            )
+            task = self.get_input(f"Enter the new task (current: {selected_todo.task})")
+            category = self.display_category_menu()
+            due_date = self.get_due_date(current=selected_todo.due_date)
+
+            self.gs.update_todo(selected_todo.task_id, task, category, due_date)
+            console.print("\n[bold green]Todo updated successfully![/bold green]")
+        except Exception as e:
+            console.print(f"\n[bold red]Error updating todo: {str(e)}[/bold red]")
+
