@@ -47,3 +47,20 @@ class TodoGoogleSheets:
             for item in data
         ]
 
+    def insert_todo(self, todo: Todo) -> None:
+        """Insert a new todo into the Google Sheet."""
+        task_id = self.get_next_task_id()
+        category_id = self.get_category_id(todo.category)
+        position = self.get_next_position()
+        self.tasks_worksheet.append_row(
+            [
+                task_id,
+                todo.task,
+                category_id,
+                todo.date_added or datetime.now().isoformat(),
+                todo.due_date,
+                todo.date_completed,
+                position,
+            ]
+        )
+
