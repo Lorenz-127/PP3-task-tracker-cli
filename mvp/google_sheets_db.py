@@ -85,3 +85,14 @@ class TodoGoogleSheets:
         if updates:
             self.tasks_worksheet.batch_update(updates)
 
+    def delete_todo(self, task_id: int) -> None:
+        """Delete a todo and update positions of remaining todos."""
+        row = self.find_row_by_task_id(task_id)
+        self.tasks_worksheet.delete_rows(row)
+        self.update_positions()
+
+    def complete_todo(self, task_id: int) -> None:
+        """Mark a todo as completed."""
+        row = self.find_row_by_task_id(task_id)
+        self.tasks_worksheet.update_cell(row, 6, datetime.now().isoformat())
+
