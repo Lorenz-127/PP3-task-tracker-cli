@@ -27,3 +27,23 @@ class TodoGoogleSheets:
         self.tasks_worksheet = self.sheet.worksheet("tasks")
         self.categories_worksheet = self.sheet.worksheet("categories")
 
+    def get_all_todos(self) -> List[Todo]:
+        """Retrieve all todos from the Google Sheet."""
+        data = self.tasks_worksheet.get_all_records()
+        categories = {
+            row["category_id"]: row["category_name"]
+            for row in self.categories_worksheet.get_all_records()
+        }
+        return [
+            Todo(
+                task_id=item["task_id"],
+                task=item["task"],
+                category=categories[item["category_id"]],
+                date_added=item["date_added"],
+                due_date=item["due_date"],
+                date_completed=item["date_completed"],
+                position=item["position"],
+            )
+            for item in data
+        ]
+
