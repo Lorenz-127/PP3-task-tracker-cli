@@ -2,20 +2,22 @@ from dataclasses import dataclass
 from datetime import datetime
 from typing import Optional
 
+
 @dataclass
 class Todo:
     """
-    Represents a Todo item with various attributes.
+    Represents a Todo item in the task management system.
 
     Attributes:
         task (str): The description of the todo task.
-        category (str): The category of the todo task.
-        date_added (str): The date and time when the task was added (default: current time in ISO format).
-        date_completed (Optional[str]): The date and time when the task was completed (default: None).
-        due_date (Optional[str]): The due date for the task (default: None).
-        status (int): The status of the task (1 = open, 2 = completed, default: 1).
-        position (Optional[int]): The position of the task in a list (default: None).
+        category (str): The category to which the task belongs.
+        task_id (Optional[int]): Unique identifier for the task. Defaults to None.
+        date_added (Optional[str]): The date when the task was added. Defaults to None.
+        due_date (Optional[str]): The due date for the task. Defaults to None.
+        date_completed (Optional[str]): The date when the task was completed. Defaults to None.
+        position (Optional[int]): The position of the task in the list. Defaults to None.
     """
+
     task: str
     category: str
     task_id: Optional[int] = None
@@ -26,10 +28,7 @@ class Todo:
 
     def __post_init__(self):
         """
-        Performs post-initialization checks and conversions.
-
-        Raises:
-            ValueError: If the status is not 1 or 2.
+        Post-initialization method to ensure date fields are in ISO format strings.
         """
         # Convert due_date to ISO format string if it's not already a string
         if self.due_date and not isinstance(self.due_date, str):
