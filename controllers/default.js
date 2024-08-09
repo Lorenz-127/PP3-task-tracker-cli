@@ -18,8 +18,8 @@ function socket() {
         // Spawn terminal
         client.tty = Pty.spawn('python3', ['run.py'], {
             name: 'xterm-color',
-            cols: 80,
-            rows: 24,
+            cols: 100,
+            rows: 30,
             cwd: process.env.PWD,
             env: process.env
         });
