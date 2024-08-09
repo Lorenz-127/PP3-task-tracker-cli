@@ -178,3 +178,6 @@ class TodoGoogleSheets:
         row = self.find_row_by_task_id(task_id)
         self.tasks_worksheet.update_cell(row, 7, new_position)
 
+    def get_all_categories(self) -> List[Dict[str, Any]]:
+        """Get all categories from the Google Sheet."""
+        return self.categories_worksheet.get_all_records()
