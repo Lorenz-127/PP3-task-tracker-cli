@@ -36,12 +36,16 @@ class TodoCLI:
             console.print(
                 Panel.fit(
                     f"[bold red]Error:[/bold red] {str(e)}\n\n"
-                    "The required Google Sheets spreadsheet could not be found or accessed.\n"
+                    "The required Google Sheets spreadsheet"
+                    "could not be found or accessed.\n"
                     "Please check the following:\n"
-                    "1. The spreadsheet 'task_tracker' exists in your Google Drive\n"
+                    "1. The spreadsheet 'task_tracker'"
+                    "exists in your Google Drive\n"
                     "2. You have the correct permissions to access it\n"
-                    "3. Your Google API credentials are correct and up to date\n\n"
-                    "If the problem persists, please contact the system administrator.",
+                    "3. Your Google API credentials"
+                    "are correct and up to date\n\n"
+                    "If the problem persists, please contact"
+                    "the system administrator.",
                     title="Google Sheets Connection Error",
                     border_style="red",
                 )
@@ -50,13 +54,16 @@ class TodoCLI:
         except Exception as e:
             console.print(
                 Panel.fit(
-                    f"[bold red]An unexpected error occurred:[/bold red]\n{str(e)}\n\n"
+                    f"[bold red]An unexpected error"
+                    f"occurred:[/bold red]\n{str(e)}\n\n"
                     "This could be due to:\n"
                     "1. Network connectivity issues\n"
                     "2. Invalid or expired Google API credentials\n"
                     "3. Insufficient permissions\n\n"
-                    "Please check your internet connection and configuration.\n"
-                    "If the problem persists, please contact the system administrator.",
+                    "Please check your internet connection"
+                    "and configuration.\n"
+                    "If the problem persists, please contact"
+                    "the system administrator.",
                     title="Initialization Error",
                     border_style="red",
                 )
@@ -105,14 +112,19 @@ class TodoCLI:
         Display a menu to select a single todo and return the selected todo.
 
         Args:
-            todos (List[Todo]): List of todos to choose from.
-            action (str): The action being performed (e.g., "update", "complete").
+            todos (List[Todo]):
+            List of todos to choose from.
+            action (str):
+            The action being performed (e.g., "update", "complete").
 
         Returns:
-            Optional[Todo]: The selected todo or None if no selection was made.
+            Optional[Todo]:
+            The selected todo or None if no selection was made.
         """
         if not todos:
-            console.print(Panel.fit("\n[bold yellow]No todos available.[/bold yellow]"))
+            console.print(Panel.fit(
+                "\n[bold yellow]No todos available.[/bold yellow]")
+            )
             return None
 
         options = [
@@ -137,7 +149,8 @@ class TodoCLI:
         Display a menu to select a category and return the selected category.
 
         Returns:
-            Optional[str]: The selected category or None if no selection was made.
+            Optional[str]:
+            The selected category or None if no selection was made.
         """
         categories = self.gs.get_all_categories()
         options = [category["category_name"] for category in categories]
@@ -157,15 +170,21 @@ class TodoCLI:
         task = self.get_input("Enter the task", required=True)
         category = self.display_category_menu()
         if category is None:
-            console.print("\n[bold yellow]Todo addition cancelled.[/bold yellow]")
+            console.print(
+                "\n[bold yellow]Todo addition cancelled.[/bold yellow]"
+            )
             return
         due_date = self.get_due_date()
         todo = Todo(task=task, category=category, due_date=due_date)
         try:
             self.gs.insert_todo(todo)
-            console.print("\n[bold green]Todo added successfully![/bold green]")
+            console.print(
+                "\n[bold green]Todo added successfully![/bold green]"
+            )
         except Exception as e:
-            console.print(f"\n[bold red]Error adding todo: {str(e)}[/bold red]")
+            console.print(
+                f"\n[bold red]Error adding todo: {str(e)}[/bold red]"
+            )
 
     def show_todos(self):
         """Display all todos in a table format."""
@@ -194,7 +213,9 @@ class TodoCLI:
 
                 # Determine the status and color for the 'Completed' column
                 if task.date_completed:
-                    completion_date = datetime.fromisoformat(task.date_completed).date()
+                    completion_date = (
+                        datetime.fromisoformat(task.date_completed).date()
+                    )
                     status = completion_date.isoformat()
                     if due_date and completion_date > due_date:
                         status_color = "red"  # Completed late
@@ -217,10 +238,16 @@ class TodoCLI:
                 )
 
             console.print(
-                Panel(table, title="\n[bold]Your Todo List[/bold]", expand=False)
+                Panel(
+                    table,
+                    title="\n[bold]Your Todo List[/bold]",
+                    expand=False
+                )
             )
         except Exception as e:
-            console.print(f"\n[bold red]Error fetching todos: {str(e)}[/bold red]")
+            console.print(
+                f"\n[bold red]Error fetching todos: {str(e)}[/bold red]"
+            )
 
     def update_todo(self):
         """Update an existing todo item."""
@@ -236,41 +263,61 @@ class TodoCLI:
                 return
 
             console.print(
-                Panel.fit(f"Updating: {selected_todo.task}", style="bold yellow")
+                Panel.fit(
+                    f"Updating: {selected_todo.task}", style="bold yellow"
+                )
             )
-            task = self.get_input(f"Enter the new task (current: {selected_todo.task})")
+            task = self.get_input(
+                f"Enter the new task (current: {selected_todo.task})"
+            )
             category = self.display_category_menu()
             due_date = self.get_due_date(current=selected_todo.due_date)
 
-            self.gs.update_todo(selected_todo.task_id, task, category, due_date)
-            console.print("\n[bold green]Todo updated successfully![/bold green]")
+            self.gs.update_todo(
+                selected_todo.task_id, task, category, due_date
+            )
+            console.print(
+                "\n[bold green]Todo updated successfully![/bold green]"
+            )
         except Exception as e:
-            console.print(f"\n[bold red]Error updating todo: {str(e)}[/bold red]")
+            console.print(
+                f"\n[bold red]Error updating todo: {str(e)}[/bold red]"
+            )
 
     def complete_todo(self):
         """Mark a todo item as completed."""
         try:
             todos = [
-                todo for todo in self.gs.get_all_todos() if not todo.date_completed
+                todo for todo in self.gs.get_all_todos()
+                if not todo.date_completed
             ]
             if not todos:
-                console.print("\n[bold yellow]No incomplete todos found.[/bold yellow]")
+                console.print(
+                    "\n[bold yellow]No incomplete todos found.[/bold yellow]"
+                )
                 return
 
             selected_todo = self.display_todo_selection_menu(todos, "complete")
             if selected_todo is None:
-                console.print("\n[bold yellow]Completion cancelled.[/bold yellow]")
+                console.print(
+                    "\n[bold yellow]Completion cancelled.[/bold yellow]"
+                )
                 return
 
             if self.confirm_action(
-                f"\nAre you sure you want to mark '{selected_todo.task}' as complete?"
+                f"\nAre you sure you want to mark '{selected_todo.task}'"
+                f"as complete?"
             ):
                 self.gs.complete_todo(selected_todo.task_id)
-                console.print("\n[bold green]Todo marked as complete![/bold green]")
+                console.print(
+                    "\n[bold green]Todo marked as complete![/bold green]"
+                )
             else:
                 console.print("\n[bold yellow]Action cancelled.[/bold yellow]")
         except Exception as e:
-            console.print(f"\n[bold red]Error completing todo: {str(e)}[/bold red]")
+            console.print(
+                f"\n[bold red]Error completing todo: {str(e)}[/bold red]"
+            )
 
     def delete_todo(self):
         """Delete a todo item."""
@@ -282,18 +329,26 @@ class TodoCLI:
 
             selected_todo = self.display_todo_selection_menu(todos, "delete")
             if selected_todo is None:
-                console.print("\n[bold yellow]Deletion cancelled.[/bold yellow]")
+                console.print(
+                    "\n[bold yellow]Deletion cancelled.[/bold yellow]"
+                )
                 return
 
             if self.confirm_action(
                 f"\nAre you sure you want to delete '{selected_todo.task}'?"
             ):
                 self.gs.delete_todo(selected_todo.task_id)
-                console.print("\n[bold green]Todo deleted successfully![/bold green]")
+                console.print(
+                    "\n[bold green]Todo deleted successfully![/bold green]"
+                )
             else:
-                console.print("\n[bold yellow]Deletion cancelled.[/bold yellow]")
+                console.print(
+                    "\n[bold yellow]Deletion cancelled.[/bold yellow]"
+                )
         except Exception as e:
-            console.print(f"\n[bold red]Error deleting todo: {str(e)}[/bold red]")
+            console.print(
+                f"\n[bold red]Error deleting todo: {str(e)}[/bold red]"
+            )
 
     def show_statistics(self):
         """Display statistics about the todos."""
@@ -302,11 +357,11 @@ class TodoCLI:
             total_todos = len(todos)
             completed_todos = sum(1 for todo in todos if todo.date_completed)
             overdue_todos = sum(
-                1
-                for todo in todos
+                1 for todo in todos
                 if not todo.date_completed
                 and todo.due_date
-                and datetime.fromisoformat(todo.due_date).date() < datetime.now().date()
+                and datetime.fromisoformat(todo.due_date).date()
+                < datetime.now().date()
             )
 
             categories = set(todo.category for todo in todos)
@@ -315,7 +370,9 @@ class TodoCLI:
                 for category in categories
             }
 
-            console.print(Panel.fit("\n[bold]Todo Statistics[/bold]", style="cyan"))
+            console.print(Panel.fit(
+                "\n[bold]Todo Statistics[/bold]", style="cyan")
+            )
             console.print(f"Total Todos: {total_todos}")
             console.print(f"Completed Todos: {completed_todos}")
             console.print(f"Overdue Todos: {overdue_todos}")
@@ -324,23 +381,28 @@ class TodoCLI:
                 console.print(f"  {category}: {count}")
 
         except Exception as e:
-            console.print(f"\n[bold red]Error fetching statistics: {str(e)}[/bold red]")
+            console.print(
+                f"\n[bold red]Error fetching statistics: {str(e)}[/bold red]"
+            )
 
     def get_input(self, prompt: str, required: bool = False) -> Optional[str]:
         """Get user input with optional requirement."""
         while True:
-            value = console.input(f"\n[bold cyan]{prompt}:[/bold cyan] ").strip()
+            value = console.input(
+                f"\n[bold cyan]{prompt}:[/bold cyan] ").strip()
             if value or not required:
                 return value or None
             console.print(
-                "\n[bold red]This field cannot be empty. Please try again.[/bold red]"
+                "\n[bold red]This field cannot be empty."
+                "Please try again.[/bold red]"
             )
 
     def get_due_date(self, current: Optional[str] = None) -> Optional[str]:
         """Get due date input from the user."""
         while True:
             date_str = self.get_input(
-                f"Enter due date (YYYY-MM-DD) or press Enter to skip{' or keep current' if current else ''}"
+                f"Enter due date (YYYY-MM-DD) or press"
+                f"Enter to skip{' or keep current' if current else ''}"
             )
             if not date_str:
                 return current
@@ -349,7 +411,8 @@ class TodoCLI:
                 return due_date.isoformat()
             except ValueError:
                 console.print(
-                    "\n[bold red]Invalid date format. Please use YYYY-MM-DD.[/bold red]"
+                    "\n[bold red]Invalid date format."
+                    "Please use YYYY-MM-DD.[/bold red]"
                 )
 
     def confirm_action(self, message: str) -> bool:
@@ -391,7 +454,8 @@ class TodoCLI:
             elif choice == 7 or choice is None:
                 if self.confirm_action("\nAre you sure you want to exit?"):
                     console.print(
-                        "\n[bold green]Thank you for using Task Tracker CLI. Goodbye![/bold green]"
+                        "\n[bold green]Thank you for using Task Tracker CLI. "
+                        "Goodbye![/bold green]"
                     )
                     break
 
