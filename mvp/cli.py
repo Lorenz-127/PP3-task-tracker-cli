@@ -115,3 +115,58 @@ class TodoCLI:
         except Exception as e:
             console.print(f"\n[bold red]Error adding todo: {str(e)}[/bold red]")
 
+    def show_todos(self):
+        """Display all todos in a table format."""
+        try:
+            tasks = self.gs.get_all_todos()
+            if not tasks:
+                console.print("\n[bold yellow]No To-Do's found.[/bold yellow]")
+                return
+
+            table = Table(show_header=True, header_style="bold magenta")
+            table.add_column("ID", style="dim", width=6, justify="center")
+            table.add_column("Todo", min_width=20)
+            table.add_column("Category", min_width=12, justify="center")
+            table.add_column("Added", min_width=10, justify="center")
+            table.add_column("Due Date", min_width=10, justify="center")
+            table.add_column("Completed", min_width=10, justify="center")
+
+            for task in tasks:
+                c = self.get_category_color(task.category)
+                due_date = (
+                    datetime.fromisoformat(task.due_date).date()
+                    if task.due_date
+                    else None
+                )
+                due_date_str = due_date.isoformat() if due_date else "-"
+
+                # Determine the status and color for the 'Completed' column
+                if task.date_completed:
+                    completion_date = datetime.fromisoformat(task.date_completed).date()
+                    status = completion_date.isoformat()
+                    if due_date and completion_date > due_date:
+                        status_color = "red"  # Completed late
+                    else:
+                        status_color = "green"  # Completed on time or early
+                elif due_date and due_date < datetime.now().date():
+                    status = "OVERDUE"
+                    status_color = "red"
+                else:
+                    status = "-"
+                    status_color = "white"
+
+                table.add_row(
+                    str(task.task_id),
+                    task.task,
+                    f"[{c}]{task.category}[/{c}]",
+                    task.date_added[:10],
+                    due_date_str,
+                    f"[{status_color}]{status}[/{status_color}]",
+                )
+
+            console.print(
+                Panel(table, title="\n[bold]Your Todo List[/bold]", expand=False)
+            )
+        except Exception as e:
+            console.print(f"\n[bold red]Error fetching todos: {str(e)}[/bold red]")
+
