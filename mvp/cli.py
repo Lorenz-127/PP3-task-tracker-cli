@@ -77,7 +77,7 @@ class TodoCLI:
             f"{i+1:2d}. {todo.task[:40]:40} ({todo.category})"
             for i, todo in enumerate(todos)
         ]
-        
+
         menu = TerminalMenu(
             options,
             title=f"\nSelect a todo to {action}",
@@ -86,7 +86,7 @@ class TodoCLI:
             clear_screen=True,
             show_search_hint=True,
         )
-        
+
         index = menu.show()
         return todos[index] if index is not None else None
 
@@ -162,8 +162,8 @@ class TodoCLI:
                     status = "OVERDUE"
                     status_color = "red"
                 else:
-                    status = "-"
-                    status_color = "white"
+                    status = "PENDING"
+                    status_color = "green"
 
                 table.add_row(
                     str(task.task_id),
