@@ -3,8 +3,8 @@ from rich.console import Console
 from rich.table import Table
 from rich.panel import Panel
 from simple_term_menu import TerminalMenu
-from model import Todo
-from google_sheets_db import TodoGoogleSheets
+from .model import Todo
+from .google_sheets_db import TodoGoogleSheets
 from datetime import datetime
 
 console = Console()

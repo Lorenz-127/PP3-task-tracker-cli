@@ -1,7 +1,7 @@
 import gspread
 from google.oauth2.service_account import Credentials
 from typing import List, Dict, Any, Optional
-from model import Todo
+from .model import Todo
 from datetime import datetime
 
 

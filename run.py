@@ -1,4 +1,4 @@
-from mvp.cli import TodoCLI
+from mvp import Todo, TodoCLI, TodoGoogleSheets
 
 def main():
     """
