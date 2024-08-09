@@ -64,3 +64,24 @@ class TodoGoogleSheets:
             ]
         )
 
+    def update_todo(
+        self,
+        task_id: int,
+        task: Optional[str] = None,
+        category: Optional[str] = None,
+        due_date: Optional[str] = None,
+    ) -> None:
+        """Update a todo's task, category, and/or due date."""
+        row = self.find_row_by_task_id(task_id)
+        updates = []
+        if task is not None:
+            updates.append({"range": f"B{row}", "values": [[task]]})
+        if category is not None:
+            category_id = self.get_category_id(category)
+            updates.append({"range": f"C{row}", "values": [[category_id]]})
+        if due_date is not None:
+            updates.append({"range": f"E{row}", "values": [[due_date]]})
+
+        if updates:
+            self.tasks_worksheet.batch_update(updates)
+
