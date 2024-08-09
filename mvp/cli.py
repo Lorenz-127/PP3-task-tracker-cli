@@ -56,3 +56,27 @@ class TodoCLI:
         )
         return menu.show()
 
+    def display_todo_selection_menu(
+        self, todos: List[Todo], action: str
+    ) -> Optional[Todo]:
+        """
+        Display a menu to select a todo and return the selected todo.
+
+        Args:
+            todos (List[Todo]): List of todos to choose from.
+            action (str): The action being performed (e.g., "update", "complete").
+
+        Returns:
+            Optional[Todo]: The selected todo or None if no selection was made.
+        """
+        options = [f"[{todo.task_id}] {todo.task} ({todo.category})" for todo in todos]
+        menu = TerminalMenu(
+            options,
+            title=f"\nSelect a todo to {action}",
+            menu_highlight_style=("fg_green",),
+            cycle_cursor=True,
+            clear_screen=True,
+        )
+        index = menu.show()
+        return todos[index] if index is not None else None
+
