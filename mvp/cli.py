@@ -80,3 +80,22 @@ class TodoCLI:
         index = menu.show()
         return todos[index] if index is not None else None
 
+    def display_category_menu(self) -> Optional[str]:
+        """
+        Display a menu to select a category and return the selected category.
+
+        Returns:
+            Optional[str]: The selected category or None if no selection was made.
+        """
+        categories = self.gs.get_all_categories()
+        options = [category["category_name"] for category in categories]
+        menu = TerminalMenu(
+            options,
+            title="\nSelect a category",
+            menu_highlight_style=("fg_green",),
+            cycle_cursor=True,
+            clear_screen=True,
+        )
+        index = menu.show()
+        return options[index] if index is not None else None
+
