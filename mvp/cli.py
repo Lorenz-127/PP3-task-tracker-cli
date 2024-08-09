@@ -60,7 +60,7 @@ class TodoCLI:
         self, todos: List[Todo], action: str
     ) -> Optional[Todo]:
         """
-        Display a menu to select a todo and return the selected todo.
+        Display a menu to select a single todo and return the selected todo.
 
         Args:
             todos (List[Todo]): List of todos to choose from.
@@ -69,17 +69,27 @@ class TodoCLI:
         Returns:
             Optional[Todo]: The selected todo or None if no selection was made.
         """
-        options = [f"[{todo.task_id}] {todo.task} ({todo.category})" for todo in todos]
+        if not todos:
+            console.print(Panel.fit("\n[bold yellow]No todos available.[/bold yellow]"))
+            return None
+
+        options = [
+            f"{i+1:2d}. {todo.task[:40]:40} ({todo.category})"
+            for i, todo in enumerate(todos)
+        ]
+        
         menu = TerminalMenu(
             options,
             title=f"\nSelect a todo to {action}",
             menu_highlight_style=("fg_green",),
             cycle_cursor=True,
             clear_screen=True,
+            show_search_hint=True,
         )
+        
         index = menu.show()
         return todos[index] if index is not None else None
-
+        
     def display_category_menu(self) -> Optional[str]:
         """
         Display a menu to select a category and return the selected category.
