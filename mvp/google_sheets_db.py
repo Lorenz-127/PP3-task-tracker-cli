@@ -22,15 +22,21 @@ class TodoGoogleSheets:
         Initialize the TodoGoogleSheets class.
 
         Args:
-            spreadsheet_name (str): Name of the Google Sheets spreadsheet to use.
+            spreadsheet_name (str):
+            Name of the Google Sheets spreadsheet to use.
 
         Raises:
-            FileNotFoundError: If the credentials file is not found.
-            GoogleAuthError: If authentication with Google fails.
-            SpreadsheetNotFound: If the specified spreadsheet cannot be found or accessed.
+            FileNotFoundError:
+            If the credentials file is not found.
+            GoogleAuthError:
+            If authentication with Google fails.
+            SpreadsheetNotFound:
+            If the specified spreadsheet cannot be found or accessed.
         """
         try:
-            creds_file = os.environ.get("GOOGLE_CREDENTIALS_FILE", "creds.json")
+            creds_file = os.environ.get(
+                "GOOGLE_CREDENTIALS_FILE", "creds.json"
+            )
             self.creds = Credentials.from_service_account_file(creds_file)
             self.scoped_creds = self.creds.with_scopes(self.SCOPE)
             self.client = gspread.authorize(self.scoped_creds)
@@ -39,7 +45,8 @@ class TodoGoogleSheets:
                 self.sheet = self.client.open(spreadsheet_name)
             except SpreadsheetNotFound:
                 raise SpreadsheetNotFound(
-                    f"Spreadsheet '{spreadsheet_name}' not found or not accessible. "
+                    f"Spreadsheet '{spreadsheet_name}'"
+                    f"not found or not accessible. "
                     f"Please check the spreadsheet name and your permissions."
                 )
 
@@ -48,10 +55,13 @@ class TodoGoogleSheets:
 
         except FileNotFoundError:
             raise FileNotFoundError(
-                "Google credentials file not found. Please check your environment variables."
+                "Google credentials file not found."
+                "Please check your environment variables."
             )
         except GoogleAuthError as e:
-            raise GoogleAuthError(f"Failed to authenticate with Google: {str(e)}")
+            raise GoogleAuthError(
+                f"Failed to authenticate with Google: {str(e)}"
+            )
 
     def get_all_todos(self) -> List[Todo]:
         """
@@ -61,7 +71,8 @@ class TodoGoogleSheets:
             List[Todo]: A list of Todo objects representing all tasks.
 
         Raises:
-            gspread.exceptions.APIError: If there's an error communicating with Google Sheets API.
+            gspread.exceptions.APIError:
+            If there's an error communicating with Google Sheets API.
         """
         try:
             data = self.tasks_worksheet.get_all_records()
@@ -184,13 +195,16 @@ class TodoGoogleSheets:
 
     def get_next_category_id(self) -> int:
         """Get the next available category_id."""
-        category_ids = self.categories_worksheet.col_values(1)[1:]  # Exclude header
+        category_ids = self.categories_worksheet.col_values(1)[1:]
         return max(map(int, category_ids or [0])) + 1
 
     def update_positions(self) -> None:
         """Update positions after a todo is deleted."""
         todos = self.get_all_todos()
-        updates = [{"range": f"G{i+2}", "values": [[i + 1]]} for i in range(len(todos))]
+        updates = [
+            {"range": f"G{i+2}", "values": [[i + 1]]}
+            for i in range(len(todos))
+        ]
         self.tasks_worksheet.batch_update(updates)
 
     def reorder_todo(self, task_id: int, new_position: int) -> None:
