@@ -99,3 +99,19 @@ class TodoCLI:
         index = menu.show()
         return options[index] if index is not None else None
 
+    def add_todo(self):
+        """Add a new todo item."""
+        console.print(Panel.fit("\nAdd New Todo", style="bold green"))
+        task = self.get_input("Enter the task", required=True)
+        category = self.display_category_menu()
+        if category is None:
+            console.print("\n[bold yellow]Todo addition cancelled.[/bold yellow]")
+            return
+        due_date = self.get_due_date()
+        todo = Todo(task=task, category=category, due_date=due_date)
+        try:
+            self.gs.insert_todo(todo)
+            console.print("\n[bold green]Todo added successfully![/bold green]")
+        except Exception as e:
+            console.print(f"\n[bold red]Error adding todo: {str(e)}[/bold red]")
+
