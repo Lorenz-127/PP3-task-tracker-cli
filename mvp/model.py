@@ -1,5 +1,5 @@
-from dataclasses import dataclass, field
-from datetime import datetime, date
+from dataclasses import dataclass
+from datetime import datetime
 from typing import Optional
 
 @dataclass
@@ -18,10 +18,10 @@ class Todo:
     """
     task: str
     category: str
-    date_added: str = field(default_factory=lambda: datetime.now().isoformat())
-    date_completed: Optional[str] = None
+    task_id: Optional[int] = None
+    date_added: Optional[str] = None
     due_date: Optional[str] = None
-    status: int = 1
+    date_completed: Optional[str] = None
     position: Optional[int] = None
 
     def __post_init__(self):
@@ -31,10 +31,23 @@ class Todo:
         Raises:
             ValueError: If the status is not 1 or 2.
         """
-        if self.status not in [1, 2]:
-            raise ValueError("Status must be 1 (open) or 2 (completed)")
+        # Convert due_date to ISO format string if it's not already a string
         if self.due_date and not isinstance(self.due_date, str):
             self.due_date = self.due_date.isoformat()
+
+        # Convert date_completed to ISO format string if it's not already a string
+        if self.date_completed and not isinstance(self.date_completed, str):
+            self.date_completed = self.date_completed.isoformat()
+
+    @property
+    def status(self) -> str:
+        """
+        Returns the status of the todo item.
+
+        Returns:
+            str: 'Completed' if the task has a completion date, otherwise 'Open'.
+        """
+        return "Completed" if self.date_completed else "Open"
 
     def __str__(self) -> str:
         """
@@ -43,6 +56,7 @@ class Todo:
         Returns:
             str: A formatted string containing task details.
         """
-        status = 'Completed' if self.status == 2 else 'Open'
         due = f", Due: {self.due_date}" if self.due_date else ""
-        return f"Task: {self.task}, Category: {self.category}, Status: {status}{due}"
+        return (
+            f"Task: {self.task}, Category: {self.category}, Status: {self.status}{due}"
+        )
