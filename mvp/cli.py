@@ -6,6 +6,8 @@ from simple_term_menu import TerminalMenu
 from .model import Todo
 from .google_sheets_db import TodoGoogleSheets
 from datetime import datetime
+import sys
+from gspread.exceptions import SpreadsheetNotFound
 
 console = Console()
 

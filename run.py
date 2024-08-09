@@ -28,6 +28,7 @@ def display_welcome_screen():
         border_style="bright_blue",
         padding=(1, 1),
     )
+
     
     console.print(welcome_panel)
 
