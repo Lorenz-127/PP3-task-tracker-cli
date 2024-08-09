@@ -306,3 +306,15 @@ class TodoCLI:
         choice = self.display_menu("confirm", "\nConfirm Action")
         return choice == 0  # "Yes" is the first option
 
+    @staticmethod
+    def get_category_color(category: str) -> str:
+        """Get the color for a category."""
+        colors = {
+            "Coding": "bright_cyan",
+            "CI-Stuff": "yellow",
+            "Personal": "bright_blue",
+            "Study": "bright_white",
+            "Errands": "bright_black",
+        }
+        return colors.get(category, "white")
+
