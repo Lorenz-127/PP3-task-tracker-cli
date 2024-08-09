@@ -147,3 +147,34 @@ class TodoGoogleSheets:
         """Get the next available category_id."""
         category_ids = self.categories_worksheet.col_values(1)[1:]  # Exclude header
         return max(map(int, category_ids or [0])) + 1
+
+    def update_positions(self) -> None:
+        """Update positions after a todo is deleted."""
+        todos = self.get_all_todos()
+        updates = [{"range": f"G{i+2}", "values": [[i + 1]]} for i in range(len(todos))]
+        self.tasks_worksheet.batch_update(updates)
+
+    def reorder_todo(self, task_id: int, new_position: int) -> None:
+        """Change the position of a todo."""
+        todos = self.get_all_todos()
+        todos.sort(key=lambda x: x.position)
+
+        todo_to_move = next(todo for todo in todos if todo.task_id == task_id)
+        old_position = todo_to_move.position
+
+        if old_position < new_position:
+            for todo in todos:
+                if old_position < todo.position <= new_position:
+                    self.update_position(todo.task_id, todo.position - 1)
+        else:
+            for todo in todos:
+                if new_position <= todo.position < old_position:
+                    self.update_position(todo.task_id, todo.position + 1)
+
+        self.update_position(task_id, new_position)
+
+    def update_position(self, task_id: int, new_position: int) -> None:
+        """Update the position of a specific todo."""
+        row = self.find_row_by_task_id(task_id)
+        self.tasks_worksheet.update_cell(row, 7, new_position)
+
