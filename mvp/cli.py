@@ -243,3 +243,34 @@ class TodoCLI:
         except Exception as e:
             console.print(f"\n[bold red]Error deleting todo: {str(e)}[/bold red]")
 
+    def show_statistics(self):
+        """Display statistics about the todos."""
+        try:
+            todos = self.gs.get_all_todos()
+            total_todos = len(todos)
+            completed_todos = sum(1 for todo in todos if todo.date_completed)
+            overdue_todos = sum(
+                1
+                for todo in todos
+                if not todo.date_completed
+                and todo.due_date
+                and datetime.fromisoformat(todo.due_date).date() < datetime.now().date()
+            )
+
+            categories = set(todo.category for todo in todos)
+            category_stats = {
+                category: sum(1 for todo in todos if todo.category == category)
+                for category in categories
+            }
+
+            console.print(Panel.fit("\n[bold]Todo Statistics[/bold]", style="cyan"))
+            console.print(f"Total Todos: {total_todos}")
+            console.print(f"Completed Todos: {completed_todos}")
+            console.print(f"Overdue Todos: {overdue_todos}")
+            console.print("\nTodos by Category:")
+            for category, count in category_stats.items():
+                console.print(f"  {category}: {count}")
+
+        except Exception as e:
+            console.print(f"\n[bold red]Error fetching statistics: {str(e)}[/bold red]")
+
