@@ -96,3 +96,54 @@ class TodoGoogleSheets:
         row = self.find_row_by_task_id(task_id)
         self.tasks_worksheet.update_cell(row, 6, datetime.now().isoformat())
 
+    def get_todos_by_category(self, category: str) -> List[Todo]:
+        """Get all todos for a specific category."""
+        all_todos = self.get_all_todos()
+        return [todo for todo in all_todos if todo.category == category]
+
+    def get_overdue_todos(self) -> List[Todo]:
+        """Get all overdue todos."""
+        all_todos = self.get_all_todos()
+        today = datetime.now().date()
+        return [
+            todo
+            for todo in all_todos
+            if todo.due_date
+            and datetime.fromisoformat(todo.due_date).date() < today
+            and not todo.date_completed
+        ]
+
+    def get_next_task_id(self) -> int:
+        """Get the next available task_id."""
+        task_ids = self.tasks_worksheet.col_values(1)[1:]  # Exclude header
+        return max(map(int, task_ids or [0])) + 1
+
+    def get_next_position(self) -> int:
+        """Get the next available position."""
+        positions = self.tasks_worksheet.col_values(7)[1:]  # Exclude header
+        return max(map(int, positions or [0])) + 1
+
+    def find_row_by_task_id(self, task_id: int) -> int:
+        """Find the row number for a given task_id."""
+        cell = self.tasks_worksheet.find(str(task_id), in_column=1)
+        if cell is None:
+            raise ValueError(f"Task with id {task_id} not found")
+        return cell.row
+
+    def get_category_id(self, category_name: str) -> int:
+        """Get the category_id for a given category name."""
+        categories = self.categories_worksheet.get_all_records()
+        for category in categories:
+            if category["category_name"] == category_name:
+                return category["category_id"]
+        raise ValueError(f"Category '{category_name}' not found")
+
+    def add_category(self, category_name: str) -> None:
+        """Add a new category."""
+        category_id = self.get_next_category_id()
+        self.categories_worksheet.append_row([category_id, category_name])
+
+    def get_next_category_id(self) -> int:
+        """Get the next available category_id."""
+        category_ids = self.categories_worksheet.col_values(1)[1:]  # Exclude header
+        return max(map(int, category_ids or [0])) + 1
