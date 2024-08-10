@@ -5,7 +5,7 @@ from rich.panel import Panel
 from simple_term_menu import TerminalMenu
 from .model import Todo
 from .google_sheets_db import TodoGoogleSheets
-from datetime import datetime
+from datetime import datetime, date
 import sys
 from gspread.exceptions import SpreadsheetNotFound
 
@@ -174,16 +174,24 @@ class TodoCLI:
                 "\n[bold yellow]Todo addition cancelled.[/bold yellow]"
             )
             return
-        due_date = self.get_due_date()
-        todo = Todo(task=task, category=category, due_date=due_date)
         try:
+            due_date = self.get_due_date()
+            todo = Todo(task=task, category=category, due_date=due_date)
             self.gs.insert_todo(todo)
             console.print(
                 "\n[bold green]Todo added successfully![/bold green]"
             )
-        except Exception as e:
+        except ValueError as e:
             console.print(
                 f"\n[bold red]Error adding todo: {str(e)}[/bold red]"
+            )
+        except Exception as e:
+            console.print(
+                f"\n[bold red]An unexpected error "
+                f"occurred: {str(e)}[/bold red]"
+            )
+            console.print(
+                "Please try again or contact support if the problem persists."
             )
 
     def show_todos(self):
@@ -401,17 +409,17 @@ class TodoCLI:
         """Get due date input from the user."""
         while True:
             date_str = self.get_input(
-                f"Enter due date (YYYY-MM-DD) or press"
-                f"Enter to skip{' or keep current' if current else ''}"
+                "Enter due date (YYYY-MM-DD) or press Enter to skip"
+                f"{' or keep current' if current else ''}"
             )
             if not date_str:
                 return current
             try:
-                due_date = datetime.strptime(date_str, "%Y-%m-%d").date()
-                return due_date.isoformat()
+                due_date = datetime.strptime(date_str, "%Y-%m-%d")
+                return due_date.date().isoformat()
             except ValueError:
                 console.print(
-                    "\n[bold red]Invalid date format."
+                    "\n[bold red]Invalid date format. "
                     "Please use YYYY-MM-DD.[/bold red]"
                 )
 
