@@ -1,6 +1,6 @@
-from dataclasses import dataclass
-from datetime import datetime
-from typing import Optional
+from dataclasses import dataclass, asdict
+from datetime import datetime, date
+from typing import Optional, Dict, Any
 
 
 @dataclass
@@ -9,7 +9,8 @@ class Todo:
     Represents a Todo item in the task management system.
 
     Attributes:
-        task (str): The description of the todo task.
+        task (str):
+        The description of the todo task.
         category (str):
         The category to which the task belongs.
         task_id (Optional[int]):
@@ -34,17 +35,34 @@ class Todo:
 
     def __post_init__(self):
         """
-        Post-initialization method to ensure
-        date fields are in ISO format strings.
+        Post-initialization method to validate and convert date fields.
         """
-        # Convert due_date to ISO format string if it's not already a string
-        if self.due_date and not isinstance(self.due_date, str):
-            self.due_date = self.due_date.isoformat()
+        self._validate_dates()
+        self._convert_dates_to_iso()
 
-        # Convert date_completed to ISO format string
-        # if it's not already a string
-        if self.date_completed and not isinstance(self.date_completed, str):
-            self.date_completed = self.date_completed.isoformat()
+    def _validate_dates(self):
+        """
+        Basic validation for date fields.
+
+        Raises:
+            ValueError:
+            If a date field is neither a string nor a date/datetime object.
+        """
+        for field in ["date_added", "due_date", "date_completed"]:
+            value = getattr(self, field)
+            if value and not isinstance(value, (str, date, datetime)):
+                raise ValueError(
+                    f"{field} must be a string, date, or datetime object"
+                )
+
+    def _convert_dates_to_iso(self):
+        """
+        Convert date fields to ISO format strings.
+        """
+        for field in ["date_added", "due_date", "date_completed"]:
+            value = getattr(self, field)
+            if isinstance(value, (date, datetime)):
+                setattr(self, field, value.isoformat())
 
     @property
     def status(self) -> str:
@@ -56,6 +74,28 @@ class Todo:
             'Completed' if the task has a completion date, otherwise 'Open'.
         """
         return "Completed" if self.date_completed else "Open"
+
+    def to_dict(self) -> Dict[str, Any]:
+        """
+        Convert the Todo object to a dictionary.
+
+        Returns:
+            Dict[str, Any]: A dictionary representation of the Todo object.
+        """
+        return asdict(self)
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "Todo":
+        """
+        Create a Todo instance from a dictionary.
+
+        Args:
+            data (Dict[str, Any]): A dictionary containing Todo data.
+
+        Returns:
+            Todo: A new Todo instance created from the provided dictionary.
+        """
+        return cls(**data)
 
     def __str__(self) -> str:
         """
