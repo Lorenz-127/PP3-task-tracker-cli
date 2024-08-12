@@ -112,14 +112,11 @@ class TodoCLI:
         Display a menu to select a single todo and return the selected todo.
 
         Args:
-            todos (List[Todo]):
-            List of todos to choose from.
-            action (str):
-            The action being performed (e.g., "update", "complete").
+            todos (List[Todo]): List of todos to choose from.
+            action (str): The action being performed (e.g., "update", "complete").
 
         Returns:
-            Optional[Todo]:
-            The selected todo or None if no selection was made.
+            Optional[Todo]: The selected todo or None if no selection was made.
         """
         if not todos:
             console.print(Panel.fit(
