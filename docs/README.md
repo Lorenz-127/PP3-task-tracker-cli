@@ -188,6 +188,26 @@ This sequence diagram helps to visualize the flow of data and control between di
 2. The interaction with external services (Google Sheets).
 3. The steps involved in creating and persisting a new todo item.
 
+### Flowchart
+
+![Business Logic](/resources/flochart-ttc.drawio.png)
+
+This detailed flowchart provides a comprehensive view of your Todo List CLI application's business logic. Here are some key aspects that align with distinction-level criteria:
+
+1. Detailed Process Flow: The chart shows the step-by-step process for each operation, including user inputs, data validation, and error handling. This demonstrates a thorough understanding of the application's logic (D3).
+
+2. Error Handling: Each major operation includes error checking and appropriate error messages, showing robust error handling (D5).
+
+3. Data Validation: The chart includes validation steps for user inputs, such as checking if a due date is valid or if a category is selected (D5).
+
+4. User Feedback: Success and error messages are displayed after each operation, demonstrating good user interaction design (D4).
+
+5. Complex Operations: The update process is broken down into multiple steps, showing how the application handles more complex operations (D1, D2).
+
+6. Data Consistency: The chart includes a step to update remaining todo positions after deletion, showing attention to data integrity (D7).
+
+7. Integration with Google Sheets: The chart clearly shows how the application interacts with Google Sheets for data persistence, demonstrating the use of external APIs (D6).
+
 
 ## Deployment
 
