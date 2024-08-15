@@ -12,11 +12,9 @@ This combined roadmap and checklist ensures that I'm addressing all the learning
    - [ ] Write code that passes through [CI Python Linter](https://pep8ci.herokuapp.com/) (LO1: 1.1)
 
 2. Basic Data Model Implementation
-   - [ ] Create SQLite database
    - [ ] Create Google API
    - [ ] Google Sheets (Cloud Storage)
-   - [ ] Local JSON Files
-   - [ ] Implement basic 'todos' table structure (LO7: 7.1)
+   - [ ] Implement basic "todos" table structure (LO7: 7.1)
 
 3. Core Functionality Implementation
    - [ ] Implement basic CRUD operations for todos (LO1: 1.2, LO7: 7.2)
@@ -30,7 +28,7 @@ This combined roadmap and checklist ensures that I'm addressing all the learning
 
 5. Deployment - Pass Level
    - [x] Deploy basic application to a cloud-based platform (e.g., Heroku) (LO9: 9.1)
-   - [ ] Ensure deployed application is free of commented-out code (LO9: 9.2)
+   - [x] Ensure deployed application is free of commented-out code (LO9: 9.2)
 
 ## Phase 2: Enhanced Functionality and Code Quality (Merit Level)
 
