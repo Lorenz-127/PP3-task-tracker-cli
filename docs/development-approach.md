@@ -114,6 +114,13 @@ my implementation plan follows the same three-phase structure as my feature plan
 
 7. `run.py`: A simple script to run your application.
 
+8. `MVP/`: Contains the Minimum Viable Product files for the Todo CLI application
+    - `__init__.py`: Makes the MVP directory a Python package and exposes key classes for easy importing
+    - `cli.py`: Contains the TodoCLI class, which handles all command-line interface logic and user interactions
+    - `google_sheets_db.py`: Houses the TodoGoogleSheets class, managing all interactions with Google Sheets as the data backend
+    - `model.py`: Defines the Todo class, representing the data model for a single todo item
+    - `run.py`: Serves as the entry point for the MVP application, initializing and running the TodoCLI
+
 ## Testing Strategy
 my testing strategy evolves through the development phases:
 - Implement basic manual testing procedures for code validation (Pass level)
