@@ -159,6 +159,35 @@ This ER diagram is based on the mvp structure Python files, specifically the `To
 
 ![ER-Diagram](/resources/ER-diagramm.mvp.png)
 
+### Sequence Diagram
+
+Example for: Add New Todo
+
+This sequence diagram illustrates the process of adding a new todo item in the Task Tracker CLI application. Here's a breakdown of the interactions:
+
+![Sequence Diagram](/resources/sequence_diagram_add-todo.drawio.png)
+
+1. The User initiates the process by selecting "Add Todo" from the CLI menu.
+2. The TodoCLI prompts the user for task details.
+3. The User enters the task details.
+4. The CLI creates a new Todo object using the provided details.
+5. The Todo model returns the created object to the CLI.
+6. The CLI calls the insert_todo method of TodoGoogleSheets to save the new todo.
+7. TodoGoogleSheets performs several internal operations:
+    - Gets the next available task ID
+    - Gets the category ID for the provided category
+    - Gets the next available position for the todo item
+8. TodoGoogleSheets appends a new row to the Google Sheets document with the todo data.
+9. Google Sheets confirms the operation.
+10. TodoGoogleSheets relays the confirmation to the CLI.
+11. The CLI displays a success message to the User.
+
+This sequence diagram helps to visualize the flow of data and control between different components of the application. It demonstrates:
+
+1. The separation of concerns between the CLI interface, data storage, and data model.
+2. The interaction with external services (Google Sheets).
+3. The steps involved in creating and persisting a new todo item.
+
 
 ## Deployment
 
