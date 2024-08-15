@@ -1,6 +1,7 @@
 black==24.4.2
 cachetools==5.4.0
 click==8.1.7
+DateTime==5.5
 fernet==1.0.1
 google-auth==2.32.0
 google-auth-oauthlib==1.2.1
@@ -13,8 +14,10 @@ pyaes==1.6.1
 pyasn1==0.6.0
 pyasn1_modules==0.4.0
 pyparsing==3.1.2
+pytz==2024.1
 requests-oauthlib==2.0.0
 rsa==4.9
 shellingham==1.5.4
 simple-term-menu==1.6.4
 typer==0.12.3
+zope.interface==7.0.1
