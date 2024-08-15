@@ -105,6 +105,43 @@ The primary target audience for this application includes:
     
 ### Conventional Commits
 
+As part of my development approach, I use Conventional Commits to standardize my commit messages. This helps in maintaining a clear and structured project history. My commit messages follow this format:
+
+Our commit messages follow this structure:
+
+    <type>[optional scope]: <description>
+    [optional body]
+    [optional footer(s)]
+
+Example:
+
+    build: Add requirements.txt for project dependencies
+
+    - Lists all Python packages required for the project
+    - Ensures consistent environment setup across different machines
+
+I use the following types in my commits:
+
+1. feat: A new feature
+2. fix: A bug fix
+3. docs: Documentation only changes
+4. style: Changes that do not affect the meaning of the code
+5. refactor: A code change that neither fixes a bug nor adds a feature
+6. perf: A code change that improves performance
+7. test: Adding missing or correcting existing tests
+8. build: Changes affecting the build system or external dependencies
+9. ci: Changes to my CI configuration files and scripts
+10. chore: Other changes that don't modify src or test files
+11. revert: Reverts a previous commit
+
+This approach allows us to:
+- Automatically generate changelogs (if implemented)
+- Determine semantic version bumps
+- Clearly communicate the nature of changes
+- Facilitate easier project contributions through a structured commit history
+
+For more details on my development approach, including my use of Conventional Commits, please refer to my [Development Approach](/docs/development-approach.md) document.
+
 ## Data Model
 
 I implement cloud data storage solution to keep it simple and multi device accessible, using Google Sheets for task content and data.
@@ -114,9 +151,7 @@ Detailed breakdown of the data model:
 - ER-Diagram,
 - and a comprehensive data dictionary,
 
-please refer to my [Data Model Documentation](/docs/data-model-documentation-mvp.md).
-
-### Google Sheets (Cloud Storage)
+please refer to my [New Data Model Documentation](/docs/data-model-documentation-mvp.md).
 
 ## Project Structure
 
