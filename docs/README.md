@@ -100,6 +100,8 @@ The primary target audience for this application includes:
     - Create a Agile "ish" (Issues, Tasks, and Milestones) Roadmap combined with assessment criteria.
 6. [Development Approach](/docs/development-approach.md)
     - Outline of my development methodology and practices
+7. [Refactoring the Project Scope](/docs/mvp-redesign.md)
+    - Due to the sudden death of my father, I had to look after the family in Switzerland. I was therefore unable to build the app as originally planned. I'm building a smaller MVP version of the original approach, but still with best practices.
     
 ### Conventional Commits
 
