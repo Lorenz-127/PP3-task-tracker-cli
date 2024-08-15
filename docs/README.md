@@ -100,10 +100,21 @@ The primary target audience for this application includes:
     - Create a Agile "ish" (Issues, Tasks, and Milestones) Roadmap combined with assessment criteria.
 6. [Development Approach](/docs/development-approach.md)
     - Outline of my development methodology and practices
+7. [Refactoring the Project Scope](/docs/mvp-redesign.md)
+    - Due to the sudden death of my father, I had to look after the family in Switzerland. I was therefore unable to build the app as originally planned. I'm building a smaller MVP version of the original approach, but still with best practices.
     
 ### Conventional Commits
 
 ## Data Model
+
+I implement cloud data storage solution to keep it simple and multi device accessible, using Google Sheets for task content and data.
+
+Detailed breakdown of the data model:
+- Table structures,
+- ER-Diagram,
+- and a comprehensive data dictionary,
+
+please refer to my [Data Model Documentation](/docs/data-model-documentation-mvp.md).
 
 ### Google Sheets (Cloud Storage)
 
