@@ -284,6 +284,62 @@ The Task Tracker CLI Application offers a robust set of features designed to enh
 
 These features have been carefully designed and implemented to create a powerful, yet user-friendly task management solution. The application aims to provide a streamlined experience for developers and productivity enthusiasts who prefer command-line interfaces, while offering the advanced functionalities typically found in GUI-based task management tools.
 
+## Libraries
+
+Here's a list of the libraries used in my project:
+
+1. **typing** \
+   Purpose: 
+   - Provides support for type hints.
+   Why chosen: Enhances code readability and helps catch type-related errors early in development.
+
+2. **rich** \
+   Purpose: 
+   - Provides rich text and beautiful formatting in the terminal.
+   Why chosen: Improves the user interface of the CLI application, making it more visually appealing and easier to read.
+
+3. **simple_term_menu** \
+   Purpose: 
+   - Creates simple interactive menus in the terminal.
+   Why chosen: Provides an easy way to create interactive menus, improving user experience in the CLI.
+
+4. **datetime** \
+   Purpose: 
+   - Supplies classes for working with dates and times.
+   Why chosen: Necessary for handling task due dates and completion times.
+
+5. **sys** \
+   Purpose: 
+   - Provides access to some variables used or maintained by the Python interpreter.
+   Why chosen: Used for graceful exit of the program when encountering critical errors.
+
+6. **gspread** \
+   Purpose: 
+   - Python API for Google Sheets.
+   Why chosen: Enables interaction with Google Sheets, allowing for cloud-based storage of tasks.
+
+7. **google.auth.exceptions** \
+   Purpose: 
+   - Provides exceptions for Google authentication.
+   Why chosen: Allows for specific handling of Google authentication errors.
+
+8. g**google.oauth2.service_account** \
+   Purpose: 
+   - Provides authentication for Google services using a service account.
+   Why chosen: Necessary for authenticating with Google Sheets API.
+
+9. **os** \
+   Purpose: 
+   - Provides a way of using operating system dependent functionality.
+   Why chosen: Used for accessing environment variables, which is a secure way to store sensitive information like API credentials.
+
+10. **dataclasses** \
+    Purpose: 
+    - Provides a decorator and functions for automatically adding generated special methods to classes.
+    Why chosen: Simplifies the creation of classes that are primarily used to store values, like the Todo class.
+
+
+## Technologies Used
 
 ## Deployment
 
