@@ -107,6 +107,15 @@ The primary target audience for this application includes:
 
 ## Data Model
 
+I implement cloud data storage solution to keep it simple and multi device accessible, using Google Sheets for task content and data.
+
+Detailed breakdown of the data model:
+- Table structures,
+- ER-Diagram,
+- and a comprehensive data dictionary,
+
+please refer to my [Data Model Documentation](/docs/data-model-documentation-mvp.md).
+
 ### Google Sheets (Cloud Storage)
 
 ## Project Structure
