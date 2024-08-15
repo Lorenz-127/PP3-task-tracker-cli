@@ -3,9 +3,15 @@ from rich.console import Console
 from rich.panel import Panel
 from rich.text import Text
 from rich import box
+import os
 
 console = Console()
 
+def clear_terminal():
+    """
+    Function to clear the terminal screen
+    """
+    os.system("cls" if os.name == "nt" else "clear")
 
 def display_welcome_screen():
     """Display a welcome screen with app information and instructions."""
@@ -40,21 +46,22 @@ def start_app():
     while True:
         display_welcome_screen()
         user_input = console.input().strip().lower()
+        clear_terminal()
 
         if user_input == "q":
             console.print(
-                "[bold red]Exiting Task Tracker CLI. Goodbye![/bold red]"
+                "[bold red]Exiting Task Tracker CLI. Goodbye![/bold red]\n"
                 )
             break
         elif user_input == "":
             console.print(
-                "[bold green]Starting Task Tracker CLI...[/bold green]"
+                "[bold green]Starting Task Tracker CLI...[/bold green]\n"
                 )
             TodoCLI().run()
             break
         else:
             console.print(
-                "[bold red]Invalid input. Please try again.[/bold red]"
+                "[bold red]Invalid input. Please try again.[/bold red]\n"
                 )
 
 
