@@ -116,7 +116,7 @@ class TodoCLI:
             action (str): The action being performed (e.g., "update", "complete").
 
         Returns:
-            Optional[Todo]: The selected todo or None if no selection was made.
+            Optional[Todo]: The selected todo or None if no selection was made or user chose to return to main menu.
         """
         if not todos:
             console.print(Panel.fit(
@@ -128,6 +128,7 @@ class TodoCLI:
             f"{i+1:2d}. {todo.task[:40]:40} ({todo.category})"
             for i, todo in enumerate(todos)
         ]
+        options.append("[Return to Main Menu]")
 
         menu = TerminalMenu(
             options,
@@ -139,7 +140,9 @@ class TodoCLI:
         )
 
         index = menu.show()
-        return todos[index] if index is not None else None
+        if index is None or index == len(todos):
+            return None
+        return todos[index]
 
     def display_category_menu(self) -> Optional[str]:
         """
