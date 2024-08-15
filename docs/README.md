@@ -208,6 +208,82 @@ This detailed flowchart provides a comprehensive view of your Todo List CLI appl
 
 7. Integration with Google Sheets: The chart clearly shows how the application interacts with Google Sheets for data persistence, demonstrating the use of external APIs (D6).
 
+## Features
+
+The Task Tracker CLI Application offers a robust set of features designed to enhance productivity and streamline task management. Here's an overview of the key functionalities:
+
+### Core Task Management
+
+1. **Add Tasks**: 
+   - Quickly add new tasks with a simple command
+   - Automatically assign task IDs for easy reference
+   - Set due dates for better time management
+
+2. **View Tasks**: 
+   - List all tasks with color-coded categories for easy visualization
+   - Sort tasks by various criteria (e.g., due date, category)
+   - Display task details including status, due date, and category
+
+3. **Update Tasks**: 
+   - Modify task details such as description, due date, and category
+   - Mark tasks as complete or reopen completed tasks
+
+4. **Delete Tasks**: 
+   - Remove tasks from the list with a simple command
+   - Confirmation prompt to prevent accidental deletions
+
+### Advanced Organization
+
+5. **Categorization**: 
+   - Assign tasks to custom categories
+   - Color-coding for quick visual identification of task categories
+   - Filter tasks by category for focused work sessions
+
+6. **Due Date Management**: 
+   - Set and modify due dates for tasks
+   - Highlight overdue tasks for immediate attention
+   - Sort tasks by due date to prioritize work
+
+### User Experience Enhancements
+
+7. **Interactive CLI Interface**: 
+   - User-friendly menu system for easy navigation
+   - Rich text formatting for improved readability
+   - Clear prompts and feedback for all actions
+
+8. **Data Persistence**: 
+   - Tasks automatically saved to Google Sheets for multi-device access
+   - Local caching for improved performance and offline capabilities
+
+### Productivity Insights
+
+9. **Task Statistics**: 
+   - View completion rates and task distribution across categories
+   - Track overdue tasks and productivity trends
+   - Generate simple reports to analyze work patterns
+
+### Security and Data Integrity
+
+10. **Error Handling**: 
+    - Robust error messages for invalid inputs or failed operations
+    - Graceful handling of network issues and API errors
+
+11. **Data Validation**: 
+    - Input validation to ensure data integrity
+    - Prevention of duplicate task entries
+
+### Extensibility and Integration
+
+12. **Google Sheets Integration**: 
+    - Seamless synchronization with Google Sheets for data storage
+    - Potential for easy sharing and collaboration on tasks
+
+13. **Modular Design**: 
+    - Well-structured codebase allowing for easy addition of new features
+    - Potential for future integrations with other productivity tools
+
+These features have been carefully designed and implemented to create a powerful, yet user-friendly task management solution. The application aims to provide a streamlined experience for developers and productivity enthusiasts who prefer command-line interfaces, while offering the advanced functionalities typically found in GUI-based task management tools.
+
 
 ## Deployment
 
