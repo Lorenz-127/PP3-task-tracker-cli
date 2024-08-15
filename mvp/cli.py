@@ -7,6 +7,7 @@ from .model import Todo
 from .google_sheets_db import TodoGoogleSheets
 from datetime import datetime, date
 import sys
+import time
 from gspread.exceptions import SpreadsheetNotFound
 
 console = Console()
@@ -78,6 +79,7 @@ class TodoCLI:
                 border_style="green",
             )
         )
+        time.sleep(3)
 
     def display_menu(self, menu_type: str, title: str) -> int:
         """
