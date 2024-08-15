@@ -341,6 +341,54 @@ Here's a list of the libraries used in my project:
 
 ## Technologies Used
 
+
+## Version Control
+
+This project utilizes Git for version control and GitHub for remote repository hosting, enabling efficient collaboration and tracking of project history. Our development process is characterized by frequent, well-documented commits and a structured branching strategy.
+
+### Git Workflow
+
+I follow a feature branch workflow, where each new feature or bugfix is developed in a separate branch before being merged into the main development branch. This approach allows for:
+
+- Parallel development of multiple features
+- Easier code reviews through pull requests
+- Stable main branch that always reflects the production-ready state of the project
+
+### Commit History
+
+Our commit history demonstrates a consistent and organized approach to development:
+
+![Git Commit History](/resources/git-source-control.png)
+
+Key points about my commit history:
+
+1. **Regular Merges**: The image shows a series of merge pull requests, indicating frequent integration of new features and fixes.
+2. **Feature Branches**: Each merge comes from a feature branch (e.g., `dev-2`), aligning with my feature branch workflow.
+3. **Descriptive Commit Messages**: Commits include clear, descriptive messages such as "feat: add new dependencies to requirements.txt" and "style(cli): adjust table column styles for better readability".
+4. **Consistent Naming**: Branch names follow a consistent pattern (`Lorenz-127/dev-2`), facilitating easy tracking and management.
+
+### Conventional Commits
+
+I adhere to the Conventional Commits specification for commit messages. This practice ensures that my project history is readable and that automated tools can parse my commit history. Examples from my commit history include:
+
+- `feat: add new dependencies to requirements.txt`
+- `style(cli): adjust table column styles for better readability`
+- `feat(cli): add welcome screen and start function`
+
+### Pull Requests
+
+My development process heavily utilizes pull requests for code review and integration. Each significant change is submitted as a pull request, allowing for:
+
+- Code review by team members
+- Automated checks and tests
+- Discussion and refinement of features before integration
+
+### Continuous Integration
+
+While not explicitly shown in the image, our GitHub workflow likely includes continuous integration processes that run automated tests and checks on each pull request, ensuring code quality and functionality before merging.
+
+This structured approach to version control and collaborative development ensures a high-quality, well-documented codebase that meets industry standards and facilitates efficient teamwork.
+
 ## Deployment
 
 The project was developed to be used with the [Code Institute Template](https://github.com/Code-Institute-Org/p3-template) on a mock terminal. It was deployed on Heroku following these steps:
