@@ -153,9 +153,12 @@ Detailed breakdown of the data model:
 
 please refer to my [New Data Model Documentation](/docs/data-model-documentation-mvp.md).
 
-## Project Structure
+### ER-Diagram
 
-## Testing
+This ER diagram is based on the mvp structure Python files, specifically the `Todo` class in `model.py` and the table structures implied by `google_sheets_db.py`.
+
+![ER-Diagram](/resources/ER-diagramm.mvp.png)
+
 
 ## Deployment
 
