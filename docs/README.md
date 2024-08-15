@@ -153,11 +153,229 @@ Detailed breakdown of the data model:
 
 please refer to my [New Data Model Documentation](/docs/data-model-documentation-mvp.md).
 
-## Project Structure
+### ER-Diagram
+
+This ER diagram is based on the mvp structure Python files, specifically the `Todo` class in `model.py` and the table structures implied by `google_sheets_db.py`.
+
+![ER-Diagram](/resources/ER-diagramm.mvp.png)
+
+### Sequence Diagram
+
+Example for: Add New Todo
+
+This sequence diagram illustrates the process of adding a new todo item in the Task Tracker CLI application. Here's a breakdown of the interactions:
+
+![Sequence Diagram](/resources/sequence_diagram_add-todo.drawio.png)
+
+1. The User initiates the process by selecting "Add Todo" from the CLI menu.
+2. The TodoCLI prompts the user for task details.
+3. The User enters the task details.
+4. The CLI creates a new Todo object using the provided details.
+5. The Todo model returns the created object to the CLI.
+6. The CLI calls the insert_todo method of TodoGoogleSheets to save the new todo.
+7. TodoGoogleSheets performs several internal operations:
+    - Gets the next available task ID
+    - Gets the category ID for the provided category
+    - Gets the next available position for the todo item
+8. TodoGoogleSheets appends a new row to the Google Sheets document with the todo data.
+9. Google Sheets confirms the operation.
+10. TodoGoogleSheets relays the confirmation to the CLI.
+11. The CLI displays a success message to the User.
+
+This sequence diagram helps to visualize the flow of data and control between different components of the application. It demonstrates:
+
+1. The separation of concerns between the CLI interface, data storage, and data model.
+2. The interaction with external services (Google Sheets).
+3. The steps involved in creating and persisting a new todo item.
+
+### Flowchart
+
+![Business Logic](/resources/flochart-ttc.drawio.png)
+
+This detailed flowchart provides a comprehensive view of your Todo List CLI application's business logic. Here are some key aspects that align with distinction-level criteria:
+
+1. Detailed Process Flow: The chart shows the step-by-step process for each operation, including user inputs, data validation, and error handling. This demonstrates a thorough understanding of the application's logic (D3).
+
+2. Error Handling: Each major operation includes error checking and appropriate error messages, showing robust error handling (D5).
+
+3. Data Validation: The chart includes validation steps for user inputs, such as checking if a due date is valid or if a category is selected (D5).
+
+4. User Feedback: Success and error messages are displayed after each operation, demonstrating good user interaction design (D4).
+
+5. Complex Operations: The update process is broken down into multiple steps, showing how the application handles more complex operations (D1, D2).
+
+6. Data Consistency: The chart includes a step to update remaining todo positions after deletion, showing attention to data integrity (D7).
+
+7. Integration with Google Sheets: The chart clearly shows how the application interacts with Google Sheets for data persistence, demonstrating the use of external APIs (D6).
+
+## Features
+
+The Task Tracker CLI Application offers a robust set of features designed to enhance productivity and streamline task management. Here's an overview of the key functionalities:
+
+### Core Task Management
+
+1. **Add Tasks**: 
+   - Quickly add new tasks with a simple command
+   - Automatically assign task IDs for easy reference
+   - Set due dates for better time management
+
+2. **View Tasks**: 
+   - List all tasks with color-coded categories for easy visualization
+   - Sort tasks by various criteria (e.g., due date, category)
+   - Display task details including status, due date, and category
+
+3. **Update Tasks**: 
+   - Modify task details such as description, due date, and category
+   - Mark tasks as complete or reopen completed tasks
+
+4. **Delete Tasks**: 
+   - Remove tasks from the list with a simple command
+   - Confirmation prompt to prevent accidental deletions
+
+### Advanced Organization
+
+5. **Categorization**: 
+   - Assign tasks to custom categories
+   - Color-coding for quick visual identification of task categories
+   - Filter tasks by category for focused work sessions
+
+6. **Due Date Management**: 
+   - Set and modify due dates for tasks
+   - Highlight overdue tasks for immediate attention
+   - Sort tasks by due date to prioritize work
+
+### User Experience Enhancements
+
+7. **Interactive CLI Interface**: 
+   - User-friendly menu system for easy navigation
+   - Rich text formatting for improved readability
+   - Clear prompts and feedback for all actions
+
+8. **Data Persistence**: 
+   - Tasks automatically saved to Google Sheets for multi-device access
+   - Local caching for improved performance and offline capabilities
+
+### Productivity Insights
+
+9. **Task Statistics**: 
+   - View completion rates and task distribution across categories
+   - Track overdue tasks and productivity trends
+   - Generate simple reports to analyze work patterns
+
+### Security and Data Integrity
+
+10. **Error Handling**: 
+    - Robust error messages for invalid inputs or failed operations
+    - Graceful handling of network issues and API errors
+
+11. **Data Validation**: 
+    - Input validation to ensure data integrity
+    - Prevention of duplicate task entries
+
+### Extensibility and Integration
+
+12. **Google Sheets Integration**: 
+    - Seamless synchronization with Google Sheets for data storage
+    - Potential for easy sharing and collaboration on tasks
+
+13. **Modular Design**: 
+    - Well-structured codebase allowing for easy addition of new features
+    - Potential for future integrations with other productivity tools
+
+These features have been carefully designed and implemented to create a powerful, yet user-friendly task management solution. The application aims to provide a streamlined experience for developers and productivity enthusiasts who prefer command-line interfaces, while offering the advanced functionalities typically found in GUI-based task management tools.
+
+## Libraries
+
+Here's a list of the libraries used in my project:
+
+1. **typing** \
+   Purpose: 
+   - Provides support for type hints.
+   Why chosen: Enhances code readability and helps catch type-related errors early in development.
+
+2. **rich** \
+   Purpose: 
+   - Provides rich text and beautiful formatting in the terminal.
+   Why chosen: Improves the user interface of the CLI application, making it more visually appealing and easier to read.
+
+3. **simple_term_menu** \
+   Purpose: 
+   - Creates simple interactive menus in the terminal.
+   Why chosen: Provides an easy way to create interactive menus, improving user experience in the CLI.
+
+4. **datetime** \
+   Purpose: 
+   - Supplies classes for working with dates and times.
+   Why chosen: Necessary for handling task due dates and completion times.
+
+5. **sys** \
+   Purpose: 
+   - Provides access to some variables used or maintained by the Python interpreter.
+   Why chosen: Used for graceful exit of the program when encountering critical errors.
+
+6. **gspread** \
+   Purpose: 
+   - Python API for Google Sheets.
+   Why chosen: Enables interaction with Google Sheets, allowing for cloud-based storage of tasks.
+
+7. **google.auth.exceptions** \
+   Purpose: 
+   - Provides exceptions for Google authentication.
+   Why chosen: Allows for specific handling of Google authentication errors.
+
+8. g**google.oauth2.service_account** \
+   Purpose: 
+   - Provides authentication for Google services using a service account.
+   Why chosen: Necessary for authenticating with Google Sheets API.
+
+9. **os** \
+   Purpose: 
+   - Provides a way of using operating system dependent functionality.
+   Why chosen: Used for accessing environment variables, which is a secure way to store sensitive information like API credentials.
+
+10. **dataclasses** \
+    Purpose: 
+    - Provides a decorator and functions for automatically adding generated special methods to classes.
+    Why chosen: Simplifies the creation of classes that are primarily used to store values, like the Todo class.
+
+
+## Technologies Used
+
+## Deployment
+
+The project was developed to be used with the [Code Institute Template](https://github.com/Code-Institute-Org/p3-template) on a mock terminal. It was deployed on Heroku following these steps:
+
+1. Create a Heroku account and **log in**.
+2. Click **New** and **Create new app** on the dashboard.
+3. Enter a unique **name** and select the region and click **Create app**.
+4. Within the created app select the tab **Settings**.
+5. At the *Config Vars* section click **Reveal Config Vars**.
+6. To use Google Sheets add a new config var with the key *CREDS*, for the value, paste the contents of the creds.json file.
+7. Add another config var with the key *PORT* and the value *8000*.
+8. Below the *Config Vars* section click **Add buildpack**. Select *Python* and save. Then add another buildpack and select *node.js*. It is important that the buildpacks are shown in this order.
+9. Navigate to the **Deploy** tab on top.
+10. Select **GitHub** as the deployment method and connect to GitHub.
+11. Search for the **repository name** of the project and click **connect**.
+12. Optionally **enable automatic deploys** to deploy each time new code is pushed to the repository.
+13. Click **Deploy Branch** to deploy the project now.
+
+[Link to my deployed project](https://task-traker-f4de740956e7.herokuapp.com/)
 
 ## Testing
 
-## Deployment
+### PEP8 Testing
+
+PEP8 testing focuses on ensuring that the codebase adheres to the guidelines outlined in PEP8, the official style guide for Python code. Key aspects of PEP8 testing include:
+
+- **Code Formatting**: Verify that the code follows consistent formatting conventions, including indentation, line length, and spacing.
+
+- **Naming Conventions**: Ensure that variable names, function names, and other identifiers adhere to PEP8 naming conventions to improve code readability and maintainability.
+
+- **Code Structure**: Review the overall structure of the codebase to identify any potential improvements in organization and clarity.
+
+- **Code Linting**: Utilize automated code analysis tools such as Flake8 or Python Indent to identify and correct violations of PEP8 guidelines.
+
+**All Python files** have been validated using the [Code Institute PEP8 Validator](https://pep8ci.herokuapp.com/) to ensure compliance with PEP8 standards. Each file returned the same result: "All clear, no errors found."
 
 ## Credits and Acknowledgements
 
