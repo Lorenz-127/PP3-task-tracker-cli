@@ -88,6 +88,19 @@ The primary target audience for this application includes:
 
 ## Planning
 
+1. [Brainstorming](/docs/brainstorming.md)
+    - Process of finding the App Idea.
+2. [Basic Idea](/docs/basic-idea.md)
+    - Brainstorm about the chosen idea
+3. [First overview](/docs/first-overview.md)
+    - Outline the first high level overview
+4. [Refined Project overview](/docs/refined-overview.md)
+    - Refine and structure the idea with project needs
+5. [Roadmap and Criteria Checklist](/docs/roadmap-checklist.md)
+    - Create a Agile "ish" (Issues, Tasks, and Milestones) Roadmap combined with assessment criteria.
+6. [Development Approach](/docs/development-approach.md)
+    - Outline of my development methodology and practices
+    
 ### Conventional Commits
 
 ## Data Model
