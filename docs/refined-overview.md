@@ -2,10 +2,10 @@
 
 Refined Project Overview: Advanced Todo List CLI Application
 
-The project aims to create a command-line interface (CLI) todo list application using Python. We'll start with basic functionality to meet pass criteria, then enhance it to achieve merit, and finally add advanced features for distinction.
+The project aims to create a command-line interface (CLI) todo list application using Python. I'll start with basic functionality to meet pass criteria, then enhance it to achieve merit, and finally add advanced features for distinction.
 
 Data Structure:
-We'll use a SQLite database with a single table for todos. The table structure will evolve as we progress:
+I'll use a google sheet as database with a single table for todos. The table structure will evolve as I progress:
 
 1. Pass Level:
    - Table: todos
@@ -79,4 +79,4 @@ Implementation Plan:
    - Enhance security measures
    - Finalize comprehensive documentation
 
-This plan ensures we meet all criteria levels systematically, demonstrating clear progression in coding skills, project management, and attention to user needs. We'll use Conventional Commits throughout the development process to maintain clear version control and project history.
+This plan ensures I meet all criteria levels systematically, demonstrating clear progression in coding skills, project management, and attention to user needs. I'll use Conventional Commits throughout the development process to maintain clear version control and project history.
