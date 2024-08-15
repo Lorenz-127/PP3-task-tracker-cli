@@ -361,6 +361,21 @@ The project was developed to be used with the [Code Institute Template](https://
 
 [Link to my deployed project](https://task-traker-f4de740956e7.herokuapp.com/)
 
+## Testing
+
+### PEP8 Testing
+
+PEP8 testing focuses on ensuring that the codebase adheres to the guidelines outlined in PEP8, the official style guide for Python code. Key aspects of PEP8 testing include:
+
+- **Code Formatting**: Verify that the code follows consistent formatting conventions, including indentation, line length, and spacing.
+
+- **Naming Conventions**: Ensure that variable names, function names, and other identifiers adhere to PEP8 naming conventions to improve code readability and maintainability.
+
+- **Code Structure**: Review the overall structure of the codebase to identify any potential improvements in organization and clarity.
+
+- **Code Linting**: Utilize automated code analysis tools such as Flake8 or Python Indent to identify and correct violations of PEP8 guidelines.
+
+**All Python files** have been validated using the [Code Institute PEP8 Validator](https://pep8ci.herokuapp.com/) to ensure compliance with PEP8 standards. Each file returned the same result: "All clear, no errors found."
 
 ## Credits and Acknowledgements
 
