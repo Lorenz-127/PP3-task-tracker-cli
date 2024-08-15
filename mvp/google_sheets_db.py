@@ -181,7 +181,18 @@ class TodoGoogleSheets:
         return cell.row
 
     def get_category_id(self, category_name: str) -> int:
-        """Get the category_id for a given category name."""
+        """
+        Get the category_id for a given category name.
+
+        Args:
+            category_name (str): The name of the category.
+
+        Returns:
+            int: The id of the category.
+
+        Raises:
+            ValueError: If the category is not found.
+        """
         categories = self.categories_worksheet.get_all_records()
         for category in categories:
             if category["category_name"] == category_name:
@@ -189,12 +200,22 @@ class TodoGoogleSheets:
         raise ValueError(f"Category '{category_name}' not found")
 
     def add_category(self, category_name: str) -> None:
-        """Add a new category."""
+        """
+        Add a new category.
+
+        Args:
+        category_name (str): The name of the new category.
+        """
         category_id = self.get_next_category_id()
         self.categories_worksheet.append_row([category_id, category_name])
 
     def get_next_category_id(self) -> int:
-        """Get the next available category_id."""
+        """
+        Get the next available category_id.
+
+        Returns:
+            int: The next available category_id.
+        """
         category_ids = self.categories_worksheet.col_values(1)[1:]
         return max(map(int, category_ids or [0])) + 1
 

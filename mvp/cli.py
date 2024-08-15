@@ -7,6 +7,7 @@ from .model import Todo
 from .google_sheets_db import TodoGoogleSheets
 from datetime import datetime, date
 import sys
+import time
 from gspread.exceptions import SpreadsheetNotFound
 
 console = Console()
@@ -78,6 +79,7 @@ class TodoCLI:
                 border_style="green",
             )
         )
+        time.sleep(3)
 
     def display_menu(self, menu_type: str, title: str) -> int:
         """
@@ -112,14 +114,11 @@ class TodoCLI:
         Display a menu to select a single todo and return the selected todo.
 
         Args:
-            todos (List[Todo]):
-            List of todos to choose from.
-            action (str):
-            The action being performed (e.g., "update", "complete").
+            todos (List[Todo]): List of todos to choose from.
+            action (str): The action being performed (e.g., "update", "complete").
 
         Returns:
-            Optional[Todo]:
-            The selected todo or None if no selection was made.
+            Optional[Todo]: The selected todo or None if no selection was made or user chose to return to main menu.
         """
         if not todos:
             console.print(Panel.fit(
@@ -131,6 +130,7 @@ class TodoCLI:
             f"{i+1:2d}. {todo.task[:40]:40} ({todo.category})"
             for i, todo in enumerate(todos)
         ]
+        options.append("[Return to Main Menu]")
 
         menu = TerminalMenu(
             options,
@@ -142,7 +142,9 @@ class TodoCLI:
         )
 
         index = menu.show()
-        return todos[index] if index is not None else None
+        if index is None or index == len(todos):
+            return None
+        return todos[index]
 
     def display_category_menu(self) -> Optional[str]:
         """
