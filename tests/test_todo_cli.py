@@ -135,3 +135,20 @@ class TestTodoCLI:
             assert result == "Valid input"
             assert mock_input.call_count == 2
 
+    @pytest.mark.timeout(10)
+    def test_add_todo_with_invalid_input(self, todo_cli):
+        """
+        Test adding a todo with invalid (empty) input.
+        This test verifies that the add_todo method
+        handles empty input correctly,
+        ensuring that no todo is added to the backend in this case.
+        """
+        print("Starting test_add_todo_with_invalid_input")
+        with patch('mvp.cli.console.input', return_value=""):
+            print("Calling todo_cli.add_todo()")
+            todo_cli.add_todo()
+            print("Finished calling todo_cli.add_todo()")
+        print("Asserting insert_todo was not called")
+        todo_cli.gs.insert_todo.assert_not_called()
+        print("Test completed")
+
