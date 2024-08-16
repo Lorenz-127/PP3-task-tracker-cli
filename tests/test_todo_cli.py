@@ -94,6 +94,30 @@ class TestTodoCLI:
         ("", False, None),  # Changed from "" to None
     ])
     def test_get_input(self, todo_cli, input_value, required, expected):
+        """
+        Test the get_input method of TodoCLI with various input scenarios.
+
+        This test function verifies the behavior of the get_input method
+        under different conditions, including optional and required inputs,
+        as well as empty input handling.
+
+        Args:
+            todo_cli (TodoCLI): The TodoCLI instance being tested.
+            input_value (str): The simulated user input value.
+            required (bool): Whether the input is required or optional.
+            expected (str or None): The expected return value from get_input.
+
+        Scenarios tested:
+        1. Optional input with a non-empty value
+        2. Required input with a valid value
+        3. Optional input with an empty value (should return None)
+
+        The test uses pytest's parametrize decorator to run multiple test cases
+        with different inputs and expected outputs.
+
+        Raises:
+            AssertionError: If the result of get_input does not match the expected value.
+        """
         with patch('mvp.cli.console.input', return_value=input_value):
             result = todo_cli.get_input("Enter input: ", required=required)
             assert result == expected
@@ -103,7 +127,7 @@ class TestTodoCLI:
         Test the get_input method when a required field is initially empty.
         This test ensures that the method prompts for input again
         when a required field is left empty,
-        and accepts valid input afterwards.
+        and accepts valid input afterwards. 
         """
         with patch('mvp.cli.console.input') as mock_input:
             mock_input.side_effect = ["", "Valid input"]
@@ -111,3 +135,44 @@ class TestTodoCLI:
             assert result == "Valid input"
             assert mock_input.call_count == 2
 
+    @pytest.mark.timeout(10)
+    def test_add_todo_with_invalid_input(self, todo_cli):
+        """
+        Test adding a todo with invalid (empty) input.
+        This test verifies that the add_todo method
+        handles empty input correctly,
+        ensuring that no todo is added to the backend in this case.
+        """
+        print("Starting test_add_todo_with_invalid_input")
+        with patch('mvp.cli.console.input', return_value=""):
+            print("Calling todo_cli.add_todo()")
+            todo_cli.add_todo()
+            print("Finished calling todo_cli.add_todo()")
+        print("Asserting insert_todo was not called")
+        todo_cli.gs.insert_todo.assert_not_called()
+        print("Test completed")
+
+    def test_add_todo_with_long_task_name(self, todo_cli):
+        """
+        Test adding a todo with an extremely long task name.
+        This test ensures that the application handles long inputs gracefully,
+        by rejecting the input and not inserting a todo.
+        """
+        long_task = "A" * 100
+        with patch('mvp.cli.console.input', return_value=long_task), \
+                patch(
+                    'mvp.cli.TodoCLI.display_category_menu',
+                    return_value="Test category"), \
+                patch(
+                    'mvp.cli.TodoCLI.get_due_date',
+                    return_value="2023-12-31"), \
+                patch('mvp.cli.console.print') as mock_print:
+            todo_cli.add_todo()
+
+        # Assert that insert_todo was not called
+        todo_cli.gs.insert_todo.assert_not_called()
+
+        # Assert that the cancellation message was printed
+        mock_print.assert_any_call(
+            "\n[bold yellow]Todo addition cancelled.[/bold yellow]"
+        )
