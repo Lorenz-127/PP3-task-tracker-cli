@@ -41,3 +41,24 @@ class TestTodoCLI:
         # Perform any one-time setup here
         pass
 
+    def test_add_todo(self, todo_cli):
+        """
+        Test the add_todo method of TodoCLI.
+        This test ensures that a new todo can be added correctly,
+        with the right task, category, and due date.
+        """
+        with patch('mvp.cli.console.input', return_value="Test task"), \
+             patch(
+                 'mvp.cli.TodoCLI.display_category_menu',
+                 return_value="Test category"), \
+             patch('mvp.cli.TodoCLI.get_due_date', return_value="2023-12-31"):
+            todo_cli.add_todo()
+
+        todo_cli.gs.insert_todo.assert_called_once()
+        inserted_todo = todo_cli.gs.insert_todo.call_args[0][0]
+
+        assert isinstance(inserted_todo, Todo)
+        assert inserted_todo.task == "Test task"
+        assert inserted_todo.category == "Test category"
+        assert inserted_todo.due_date == "2023-12-31"
+
