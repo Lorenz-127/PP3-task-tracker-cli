@@ -476,7 +476,7 @@ This project uses pytest for automated testing. To run the tests:
     4. For a coverage report, first install pytest-cov:
         - pytest --cov=mvp
 
-exmaple:
+Example:
 
 ![auto-test-cli](/resources/auto_test_cli.png)
 
