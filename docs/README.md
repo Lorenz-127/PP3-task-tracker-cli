@@ -340,13 +340,13 @@ Here's a list of the libraries used in my project:
 
 9. **os**
 - Purpose:
-    - Provides a way of using operating system dependent functionality. \
+    - Provides a way of using operating system dependent functionality.
 - Why chosen:
     - Used for accessing environment variables, which is a secure way to store sensitive information like API credentials.
 
 10. **dataclasses**
 - Purpose:
-    - Provides a decorator and functions for automatically adding generated special methods to classes. \
+    - Provides a decorator and functions for automatically adding generated special methods to classes.
 - Why chosen:
     - Simplifies the creation of classes that are primarily used to store values, like the Todo class.
 
@@ -407,7 +407,7 @@ My development process heavily utilizes pull requests for code review and integr
 
 ### Continuous Integration
 
-While not explicitly shown in the image, our GitHub workflow likely includes continuous integration processes that run automated tests and checks on each pull request, ensuring code quality and functionality before merging.
+While not explicitly shown in the image, my GitHub workflow likely includes continuous integration processes that run automated tests and checks on each pull request, ensuring code quality and functionality before merging.
 
 This structured approach to version control and collaborative development ensures a high-quality, well-documented codebase that meets industry standards and facilitates efficient teamwork.
 
@@ -446,6 +446,14 @@ PEP8 testing focuses on ensuring that the codebase adheres to the guidelines out
 - **Code Linting**: Utilize automated code analysis tools such as Flake8 or Python Indent to identify and correct violations of PEP8 guidelines.
 
 **All Python files** have been validated using the [Code Institute PEP8 Validator](https://pep8ci.herokuapp.com/) to ensure compliance with PEP8 standards. Each file returned the same result: "All clear, no errors found."
+
+examples before:
+
+![before validation](/resources/linter_validation_pytest.png)
+
+and after validation:
+
+![after validation](/resources/linter_validation_pytest_after.png)
 
 ### Manual Testing Procedures for Task Tracker CLI
 
