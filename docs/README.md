@@ -15,7 +15,7 @@
 06. [**Project Structure**](#project-structure)
 07. [**Testing**](#testing)
 08. [**Deployment**](#deployment)
-09. [**Credits and Acknowledgements**](#credits-and-acknowledgements)
+09. [**Credits**](#credits)
 10. [**Reflection and Future Improvements**](#reflection-and-future-improvements)
 
 ## Project Rationale
