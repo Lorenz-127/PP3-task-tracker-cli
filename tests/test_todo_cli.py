@@ -94,6 +94,30 @@ class TestTodoCLI:
         ("", False, None),  # Changed from "" to None
     ])
     def test_get_input(self, todo_cli, input_value, required, expected):
+        """
+        Test the get_input method of TodoCLI with various input scenarios.
+
+        This test function verifies the behavior of the get_input method
+        under different conditions, including optional and required inputs,
+        as well as empty input handling.
+
+        Args:
+            todo_cli (TodoCLI): The TodoCLI instance being tested.
+            input_value (str): The simulated user input value.
+            required (bool): Whether the input is required or optional.
+            expected (str or None): The expected return value from get_input.
+
+        Scenarios tested:
+        1. Optional input with a non-empty value
+        2. Required input with a valid value
+        3. Optional input with an empty value (should return None)
+
+        The test uses pytest's parametrize decorator to run multiple test cases
+        with different inputs and expected outputs.
+
+        Raises:
+            AssertionError: If the result of get_input does not match the expected value.
+        """
         with patch('mvp.cli.console.input', return_value=input_value):
             result = todo_cli.get_input("Enter input: ", required=required)
             assert result == expected
