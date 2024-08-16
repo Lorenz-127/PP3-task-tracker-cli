@@ -12,6 +12,8 @@ from gspread.exceptions import SpreadsheetNotFound
 
 console = Console()
 
+MAX_INPUT_LENGTH = 50
+
 
 class TodoCLI:
     def __init__(self):
@@ -169,7 +171,12 @@ class TodoCLI:
     def add_todo(self):
         """Add a new todo item."""
         console.print(Panel.fit("\nAdd New Todo", style="bold green"))
-        task = self.get_input("Enter the task", required=True)
+        task = self.get_input("Enter the task", required=True, max_length=50)
+        if task is None:
+            console.print(
+                "\n[bold yellow]Todo addition cancelled.[/bold yellow]"
+            )
+            return
         category = self.display_category_menu()
         if category is None:
             console.print(
@@ -278,7 +285,8 @@ class TodoCLI:
                 )
             )
             task = self.get_input(
-                f"Enter the new task (current: {selected_todo.task})"
+                f"Enter the new task (current: {selected_todo.task})",
+                max_length=50
             )
             category = self.display_category_menu()
             due_date = self.get_due_date(current=selected_todo.due_date)
@@ -395,8 +403,10 @@ class TodoCLI:
                 f"\n[bold red]Error fetching statistics: {str(e)}[/bold red]"
             )
 
-    def get_input(self, prompt: str, required: bool = False) -> Optional[str]:
-        """Get user input with optional requirement."""
+    def get_input(
+            self, prompt: str,
+            required: bool = False,
+            max_length: int = MAX_INPUT_LENGTH) -> Optional[str]:
         while True:
             value = console.input(
                 f"\n[bold cyan]{prompt}:[/bold cyan] ").strip()
