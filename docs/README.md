@@ -480,10 +480,31 @@ Example:
 
 ![auto-test-cli](/resources/auto_test_cli.png)
 
-## Credits and Acknowledgements
+## Credits
 
-Luke mentor
-Daisy auto test
+### Content
+
+- The text on the website is written entirely by me. However, I have used [deepl.com](https://www.deepl.com/translator) for some parts of the translation.
+- Some questions were answered with the help of AI. Primarily for faster planning and structural help.
+
+### Inspiration
+
+- [Patrick Loeber's](https://www.youtube.com/watch?v=ynd67UwG_cI&pp=ygUNdG9kbyBsaXN0IGNsaQ%3D%3D) tutorial gave me the basic idea for the app.
+- [Corey Schafer](https://www.youtube.com/@coreyms)
+Python Tutorial: [Unit Testing Your Code with the unittest Module](https://www.youtube.com/watch?v=6tNS--WetLI&t=668s)
+Even though I decided to use the pytest library for my automated tests, the inspiration came from Corey Schafer's tutorial. I gathered the necessary knowledge from the official documentation [pytest documentation](https://docs.pytest.org/en/stable/index.html).
+
+
+### Acknowledgements
+
+- I would like to thank my mentor Luke Buchanan, for great feedback and advice. [LinkedIn](https://www.linkedin.com/in/lukebuchanan67/)
+- Daisy Mc Girr for her expertise in automated testing. [LinkedIn](https://www.linkedin.com/in/daisy-mcgirr-4a3671173/) [GitHub](https://github.com/Dee-McG)
+- Tomáš_Kubánčik_Alumni_lead For additional advice on docstrings. [LinkedIn](https://www.linkedin.com/in/tomas-kubancik/) [GitHub](https://github.com/tomik-z-cech)
+
+### Honourable mentions
+
+- IoanZaharia_5p_Lead for his valuable feedback. [LinkedIn](https://www.linkedin.com/in/ioan-zaharia/) [GitHub](https://github.com/zioan)
+- Vernell_5p_Lead for his moral support. [LinkedIn](https://www.linkedin.com/in/vernellclark/) [GitHub](https://github.com/VCGithubCode)
 
 ## Reflection and Future Improvements
 
