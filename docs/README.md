@@ -425,6 +425,10 @@ PEP8 testing focuses on ensuring that the codebase adheres to the guidelines out
 
 **All Python files** have been validated using the [Code Institute PEP8 Validator](https://pep8ci.herokuapp.com/) to ensure compliance with PEP8 standards. Each file returned the same result: "All clear, no errors found."
 
+### Manual Testing Procedures for Task Tracker CLI
+
+As part of my commitment to ensuring the reliability and functionality of the Task Tracker CLI, I have developed and implemented a comprehensive set of manual testing procedures. My testing suite covers all core features of the application, including adding, viewing, updating, completing, and deleting todos, as well as viewing statistics. For each test case, I've outlined detailed steps to perform the test, specified the expected results, and provided space to record actual outcomes and pass/fail status. This methodical approach allows me to thoroughly validate the application's behavior, identify potential issues, and ensure a smooth user experience. I consider this manual testing process crucial for maintaining the quality and dependability of the Task Tracker CLI. To review my detailed manual testing procedures, please refer to my [manual_tests.md](/docs/manual_tests.md) file.
+
 ## Credits and Acknowledgements
 
 ## Reflection and Future Improvements
