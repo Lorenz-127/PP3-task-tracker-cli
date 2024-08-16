@@ -33,3 +33,11 @@ def mock_todos():
         Todo(task_id=2, task="Task 2", category="Category 2"),
     ]
 
+
+@pytest.mark.usefixtures("todo_cli")
+class TestTodoCLI:
+    @classmethod
+    def setup_class(cls):
+        # Perform any one-time setup here
+        pass
+
