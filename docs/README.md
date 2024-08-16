@@ -1,5 +1,7 @@
 # Task Tracker CLI Application
 
+![Task-Tracker-CLI](/resources/task_tracker_cli_show_all.png)
+
 ## Table of Contents
 
 01. [**Project Rationale**](#project-rationale)
@@ -468,4 +470,14 @@ This project uses pytest for automated testing. To run the tests:
 
 ## Credits and Acknowledgements
 
+Luke mentor
+Daisy auto test
+
 ## Reflection and Future Improvements
+
+fun
+stress
+original plan with more features
+more auto-test cases
+full stack app
+mobile app
