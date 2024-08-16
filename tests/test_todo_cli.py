@@ -152,3 +152,27 @@ class TestTodoCLI:
         todo_cli.gs.insert_todo.assert_not_called()
         print("Test completed")
 
+    def test_add_todo_with_long_task_name(self, todo_cli):
+        """
+        Test adding a todo with an extremely long task name.
+        This test ensures that the application handles long inputs gracefully,
+        by rejecting the input and not inserting a todo.
+        """
+        long_task = "A" * 100
+        with patch('mvp.cli.console.input', return_value=long_task), \
+                patch(
+                    'mvp.cli.TodoCLI.display_category_menu',
+                    return_value="Test category"), \
+                patch(
+                    'mvp.cli.TodoCLI.get_due_date',
+                    return_value="2023-12-31"), \
+                patch('mvp.cli.console.print') as mock_print:
+            todo_cli.add_todo()
+
+        # Assert that insert_todo was not called
+        todo_cli.gs.insert_todo.assert_not_called()
+
+        # Assert that the cancellation message was printed
+        mock_print.assert_any_call(
+            "\n[bold yellow]Todo addition cancelled.[/bold yellow]"
+        )
