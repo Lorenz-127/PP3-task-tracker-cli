@@ -88,3 +88,26 @@ class TestTodoCLI:
             todo_cli.complete_todo()
             todo_cli.gs.complete_todo.assert_called_once_with(1)
 
+    @pytest.mark.parametrize("input_value, required, expected", [
+        ("Test input", False, "Test input"),
+        ("Valid input", True, "Valid input"),
+        ("", False, None),  # Changed from "" to None
+    ])
+    def test_get_input(self, todo_cli, input_value, required, expected):
+        with patch('mvp.cli.console.input', return_value=input_value):
+            result = todo_cli.get_input("Enter input: ", required=required)
+            assert result == expected
+
+    def test_get_input_required_empty_then_valid(self, todo_cli):
+        """
+        Test the get_input method when a required field is initially empty.
+        This test ensures that the method prompts for input again
+        when a required field is left empty,
+        and accepts valid input afterwards.
+        """
+        with patch('mvp.cli.console.input') as mock_input:
+            mock_input.side_effect = ["", "Valid input"]
+            result = todo_cli.get_input("Enter input: ", required=True)
+            assert result == "Valid input"
+            assert mock_input.call_count == 2
+
