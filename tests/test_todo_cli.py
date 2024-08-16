@@ -73,3 +73,18 @@ class TestTodoCLI:
             todo_cli.show_todos()
             mock_print.assert_called()
 
+    def test_complete_todo(self, todo_cli, mock_todos):
+        """
+        Test the complete_todo method of TodoCLI.
+        This test ensures that a selected todo can be marked as complete,
+        and that the appropriate method is called on the backend.
+        """
+        todo_cli.gs.get_all_todos.return_value = mock_todos
+        with patch.multiple(
+            'mvp.cli.TodoCLI',
+            display_todo_selection_menu=MagicMock(return_value=mock_todos[0]),
+            confirm_action=MagicMock(return_value=True)
+        ):
+            todo_cli.complete_todo()
+            todo_cli.gs.complete_todo.assert_called_once_with(1)
+
