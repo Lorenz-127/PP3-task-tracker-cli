@@ -62,3 +62,14 @@ class TestTodoCLI:
         assert inserted_todo.category == "Test category"
         assert inserted_todo.due_date == "2023-12-31"
 
+    def test_show_todos(self, todo_cli, mock_todos):
+        """
+        Test the show_todos method of TodoCLI.
+        This test verifies that the method correctly retrieves and displays
+        all todos from the Google Sheets backend.
+        """
+        todo_cli.gs.get_all_todos.return_value = mock_todos
+        with patch('mvp.cli.console.print') as mock_print:
+            todo_cli.show_todos()
+            mock_print.assert_called()
+
