@@ -429,6 +429,23 @@ PEP8 testing focuses on ensuring that the codebase adheres to the guidelines out
 
 As part of my commitment to ensuring the reliability and functionality of the Task Tracker CLI, I have developed and implemented a comprehensive set of manual testing procedures. My testing suite covers all core features of the application, including adding, viewing, updating, completing, and deleting todos, as well as viewing statistics. For each test case, I've outlined detailed steps to perform the test, specified the expected results, and provided space to record actual outcomes and pass/fail status. This methodical approach allows me to thoroughly validate the application's behavior, identify potential issues, and ensure a smooth user experience. I consider this manual testing process crucial for maintaining the quality and dependability of the Task Tracker CLI. To review my detailed manual testing procedures, please refer to my [manual_tests.md](/docs/manual_tests.md) file.
 
+### Automated Testing Procedures for Task Tracker CLI
+
+To complement my manual testing and further enhance the reliability of the Task Tracker CLI, I've implemented a suite of automated tests using pytest. These tests focus on validating the core functionalities of the application programmatically, ensuring consistent behavior across different scenarios and as the codebase evolves. My test suite covers key operations such as adding, viewing, updating, and deleting todos, as well as more complex interactions within the CLI interface. By mocking external dependencies like the Google Sheets integration, I've isolated the CLI functionality for thorough testing. This automated approach not only helps me catch regressions quickly but also serves as living documentation of the expected behavior of various components. To run these tests or review the test cases, you can refer to the `test_todo_cli.py` file in the project directory. Implementing these automated tests demonstrates my commitment to code quality and my ability to use advanced testing methodologies, aligning with higher-level software development practices.
+
+#### Automated Testing Manual
+
+This project uses pytest for automated testing. To run the tests:
+
+    1. Ensure you have pytest installed:
+        - pip install pytest
+    2. From the project root directory, run:
+        - pytest
+    3. To see more detailed output, including print statements, use:
+        - pytest -v -s
+    4. For a coverage report, first install pytest-cov:
+        - pytest --cov=mvp
+
 ## Credits and Acknowledgements
 
 ## Reflection and Future Improvements
