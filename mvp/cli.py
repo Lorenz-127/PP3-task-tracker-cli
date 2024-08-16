@@ -539,46 +539,65 @@ class TodoCLI:
             )
 
     def get_input(
-            self, prompt: str,
-            required: bool = False,
-            max_length: int = MAX_INPUT_LENGTH) -> Optional[str]:
+        self,
+        prompt: str,
+        required: bool = False,
+        max_length: int = MAX_INPUT_LENGTH,
+        max_attempts: int = 3
+    ) -> Optional[str]:
         """
-        Get user input with optional requirement and maximum length constraint.
+        Get user input with optional requirement,
+        maximum length constraint, and maximum attempts.
 
         Args:
             prompt (str):
-            The prompt to display to the user.
-
+                The prompt to display to the user.
             required (bool, optional):
-            Whether the input is required. Defaults to False.
-
+                Whether the input is required. Defaults to False.
             max_length (int, optional):
-            Maximum allowed length of the input. Defaults to MAX_INPUT_LENGTH.
+                Maximum allowed length of the input.
+                Defaults to MAX_INPUT_LENGTH.
+            max_attempts (int, optional):
+                Maximum number of attempts for input.
+                Defaults to 3.
 
         Returns:
             Optional[str]:
-            The user's input, or None if the input was empty and not required.
+                The user's input, or None if the input was
+                invalid after max attempts.
 
         Note:
-            Continuously prompts the user until
-            valid input is provided if the input is required.
+            Prompts the user up to max_attempts times for valid input.
         """
-        while True:
+        for attempt in range(max_attempts):
             value = console.input(
-                f"\n[bold cyan]{prompt}:[/bold cyan] ").strip()
+                f"\n[bold cyan]{prompt}:[/bold cyan] "
+            ).strip()
+
+            if not value:
+                if not required:
+                    return None
+                console.print(
+                    "\n[bold red]This field cannot be empty. "
+                    f"Attempts left: {max_attempts - attempt - 1}[/bold red]"
+                )
+                continue
+
             if len(value) > max_length:
                 console.print(
                     f"\n[bold red]Input exceeds maximum length"
                     f"of {max_length} characters. "
-                    f"Please try again.[/bold red]"
+                    f"Attempts left: {max_attempts - attempt - 1}[/bold red]"
                 )
                 continue
-            if value or not required:
-                return value or None
-            console.print(
-                "\n[bold red]This field cannot be empty. "
-                "Please try again.[/bold red]"
-            )
+
+            return value
+
+        console.print(
+            "\n[bold yellow]Maximum attempts reached."
+            "Input cancelled.[/bold yellow]"
+        )
+        return None
 
     def get_due_date(self, current: Optional[str] = None) -> Optional[str]:
         """
