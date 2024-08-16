@@ -12,11 +12,44 @@ from gspread.exceptions import SpreadsheetNotFound
 
 console = Console()
 
+MAX_INPUT_LENGTH = 50
+
 
 class TodoCLI:
+    """
+    A command-line interface for managing todos
+    using Google Sheets as a backend.
+
+    This class provides methods for adding, viewing, updating, completing,
+    and deleting todos, as well as displaying statistics. It uses Rich for
+    enhanced console output and simple-term-menu for interactive menus.
+
+    Attributes:
+        menu_items (dict):
+        A dictionary containing menu options for different actions.
+
+        gs (TodoGoogleSheets):
+        An instance of TodoGoogleSheets for database operations.
+
+    Raises:
+        SpreadsheetNotFound:
+        If the required Google Sheets spreadsheet is not accessible.
+
+        Exception: For other unexpected errors during initialization.
+    """
     def __init__(self):
         """
         Initialize the TodoCLI with menu items and Google Sheets integration.
+
+        This method sets up the menu structure and establishes a connection
+        to Google Sheets. It handles potential errors during initialization
+        and provides appropriate feedback to the user.
+
+        Raises:
+            SpreadsheetNotFound:
+            If the Google Sheets spreadsheet is not found or accessible.
+
+            Exception: For any other unexpected errors during initialization.
         """
         self.menu_items = {
             "main": [
@@ -85,13 +118,18 @@ class TodoCLI:
         """
         Display a menu of the specified type and return the selected option.
 
+        This method uses simple-term-menu to create an interactive CLI menu.
+
         Args:
-            menu_type (str): The type of menu to display.
-            title (str): The title of the menu.
+            menu_type (str): The type of menu to display ('main' or 'confirm').
+            title (str): The title to display above the menu.
 
         Returns:
             int: The index of the selected menu item.
-        """
+
+        Note:
+            Returns None if the user cancels the selection.
+        """""
         main_menu_title = "\nTodo CLI - Main Menu\n"
 
         menu = TerminalMenu(
@@ -113,12 +151,19 @@ class TodoCLI:
         """
         Display a menu to select a single todo and return the selected todo.
 
+        This method creates an interactive menu for the user to choose a todo
+        from a list of todos for a specific action (e.g., update, complete).
+
         Args:
-            todos (List[Todo]): List of todos to choose from.
-            action (str): The action being performed (e.g., "update", "complete").
+            todos (List[Todo]):
+            List of todos to choose from.
+
+            action (str):
+            The action being performed (e.g., "update", "complete").
 
         Returns:
-            Optional[Todo]: The selected todo or None if no selection was made or user chose to return to main menu.
+            Optional[Todo]: The selected todo or None if no selection was made
+                            or user chose to return to main menu.
         """
         if not todos:
             console.print(Panel.fit(
@@ -150,9 +195,12 @@ class TodoCLI:
         """
         Display a menu to select a category and return the selected category.
 
+        This method retrieves all categories from the database and presents
+        them in an interactive menu for the user to choose from.
+
         Returns:
             Optional[str]:
-            The selected category or None if no selection was made.
+            The selected category name or None if no selection was made.
         """
         categories = self.gs.get_all_categories()
         options = [category["category_name"] for category in categories]
@@ -167,9 +215,32 @@ class TodoCLI:
         return options[index] if index is not None else None
 
     def add_todo(self):
-        """Add a new todo item."""
+        """
+        Add a new todo item to the task list.
+
+        This method prompts the user for task details,
+        including the task description, category, and due date.
+        It then creates a new Todo object and inserts it into
+        the Google Sheets database.
+
+        The method handles potential errors and
+        provides feedback to the user on the
+        success or failure of the operation.
+
+        Raises:
+            ValueError:
+            If there's an issue with the input data.
+
+            Exception:
+            For any unexpected errors during the todo addition process.
+        """
         console.print(Panel.fit("\nAdd New Todo", style="bold green"))
-        task = self.get_input("Enter the task", required=True)
+        task = self.get_input("Enter the task", required=True, max_length=50)
+        if task is None:
+            console.print(
+                "\n[bold yellow]Todo addition cancelled.[/bold yellow]"
+            )
+            return
         category = self.display_category_menu()
         if category is None:
             console.print(
@@ -197,7 +268,21 @@ class TodoCLI:
             )
 
     def show_todos(self):
-        """Display all todos in a table format."""
+        """
+        Display all todos in a formatted table.
+
+        This method retrieves all todos from
+        the database and presents them in a Rich table format.
+        It includes task details, categories (color-coded),
+        due dates, and completion status.
+
+        The method handles potential errors
+        in fetching or displaying the todos.
+
+        Raises:
+            Exception:
+            For any unexpected errors during the retrieval or display process.
+        """
         try:
             tasks = self.gs.get_all_todos()
             if not tasks:
@@ -260,7 +345,22 @@ class TodoCLI:
             )
 
     def update_todo(self):
-        """Update an existing todo item."""
+        """
+        Update an existing todo item.
+
+        This method allows the user to select
+        a todo from a list and update its
+        details, including the task description,
+        category, and due date.
+        It then updates the todo in the Google Sheets database.
+
+        The method handles potential errors and
+        provides feedback to the user on the
+        success or failure of the update operation.
+
+        Raises:
+            Exception: For any unexpected errors during the update process.
+        """
         try:
             todos = self.gs.get_all_todos()
             if not todos:
@@ -278,7 +378,8 @@ class TodoCLI:
                 )
             )
             task = self.get_input(
-                f"Enter the new task (current: {selected_todo.task})"
+                f"Enter the new task (current: {selected_todo.task})",
+                max_length=50
             )
             category = self.display_category_menu()
             due_date = self.get_due_date(current=selected_todo.due_date)
@@ -295,7 +396,21 @@ class TodoCLI:
             )
 
     def complete_todo(self):
-        """Mark a todo item as completed."""
+        """
+        Mark a todo item as completed.
+
+        This method displays a list of incomplete todos
+        for the user to select from.
+        The selected todo is then marked as completed in the database.
+
+        The method handles potential errors and
+        provides feedback to the user on the
+        success or failure of the completion operation.
+
+        Raises:
+            Exception:
+            For any unexpected errors during the completion process.
+        """
         try:
             todos = [
                 todo for todo in self.gs.get_all_todos()
@@ -330,7 +445,21 @@ class TodoCLI:
             )
 
     def delete_todo(self):
-        """Delete a todo item."""
+        """
+        Delete a todo item from the task list.
+
+        This method allows the user to select a todo
+        for deletion. It confirms the action with the user
+        before permanently removing the todo from the database.
+
+        The method handles potential errors and
+        provides feedback to the user on the
+        success or failure of the deletion operation.
+
+        Raises:
+            Exception:
+            For any unexpected errors during the deletion process.
+        """
         try:
             todos = self.gs.get_all_todos()
             if not todos:
@@ -361,7 +490,21 @@ class TodoCLI:
             )
 
     def show_statistics(self):
-        """Display statistics about the todos."""
+        """
+        Display statistics about the todos.
+
+        This method calculates and presents various statistics about the todos,
+        including total count, completed count, overdue count, and a breakdown
+        by category.
+
+        The method handles potential errors in
+        fetching or calculating statistics.
+
+        Raises:
+            Exception:
+            For any unexpected errors during the
+            statistics calculation or display process.
+        """
         try:
             todos = self.gs.get_all_todos()
             total_todos = len(todos)
@@ -395,20 +538,89 @@ class TodoCLI:
                 f"\n[bold red]Error fetching statistics: {str(e)}[/bold red]"
             )
 
-    def get_input(self, prompt: str, required: bool = False) -> Optional[str]:
-        """Get user input with optional requirement."""
-        while True:
+    def get_input(
+        self,
+        prompt: str,
+        required: bool = False,
+        max_length: int = MAX_INPUT_LENGTH,
+        max_attempts: int = 3
+    ) -> Optional[str]:
+        """
+        Get user input with optional requirement,
+        maximum length constraint, and maximum attempts.
+
+        Args:
+            prompt (str):
+                The prompt to display to the user.
+            required (bool, optional):
+                Whether the input is required. Defaults to False.
+            max_length (int, optional):
+                Maximum allowed length of the input.
+                Defaults to MAX_INPUT_LENGTH.
+            max_attempts (int, optional):
+                Maximum number of attempts for input.
+                Defaults to 3.
+
+        Returns:
+            Optional[str]:
+                The user's input, or None if the input was
+                invalid after max attempts.
+
+        Note:
+            Prompts the user up to max_attempts times for valid input.
+        """
+        for attempt in range(max_attempts):
             value = console.input(
-                f"\n[bold cyan]{prompt}:[/bold cyan] ").strip()
-            if value or not required:
-                return value or None
-            console.print(
-                "\n[bold red]This field cannot be empty."
-                "Please try again.[/bold red]"
-            )
+                f"\n[bold cyan]{prompt}:[/bold cyan] "
+            ).strip()
+
+            if not value:
+                if not required:
+                    return None
+                console.print(
+                    "\n[bold red]This field cannot be empty. "
+                    f"Attempts left: {max_attempts - attempt - 1}[/bold red]"
+                )
+                continue
+
+            if len(value) > max_length:
+                console.print(
+                    f"\n[bold red]Input exceeds maximum length"
+                    f"of {max_length} characters. "
+                    f"Attempts left: {max_attempts - attempt - 1}[/bold red]"
+                )
+                continue
+
+            return value
+
+        console.print(
+            "\n[bold yellow]Maximum attempts reached."
+            "Input cancelled.[/bold yellow]"
+        )
+        return None
 
     def get_due_date(self, current: Optional[str] = None) -> Optional[str]:
-        """Get due date input from the user."""
+        """
+        Get due date input from the user.
+
+        This method prompts the user to enter a
+        due date for a todo item.
+        It validates the input format and returns
+        the date as an ISO formatted string.
+
+        Args:
+            current (Optional[str], optional):
+            The current due date, if updating. Defaults to None.
+
+        Returns:
+            Optional[str]:
+            The due date in ISO format (YYYY-MM-DD),
+            or None if no date was entered.
+
+        Raises:
+            ValueError:
+            If the entered date is in an invalid format.
+        """
         while True:
             date_str = self.get_input(
                 "Enter due date (YYYY-MM-DD) or press Enter to skip"
@@ -426,14 +638,37 @@ class TodoCLI:
                 )
 
     def confirm_action(self, message: str) -> bool:
-        """Confirm an action with the user."""
+        """
+        Confirm an action with the user.
+
+        This method displays a confirmation message to
+        the user and prompts for a Yes/No response.
+
+        Args:
+            message (str): The confirmation message to display.
+
+        Returns:
+            bool: True if the user confirms the action, False otherwise.
+        """
         console.print(f"[bold yellow]{message}[/bold yellow]")
         choice = self.display_menu("confirm", "\nConfirm Action")
         return choice == 0  # "Yes" is the first option
 
     @staticmethod
     def get_category_color(category: str) -> str:
-        """Get the color for a category."""
+        """
+        Get the display color for a given category.
+
+        Args:
+            category (str): The name of the category.
+
+        Returns:
+            str: The color name to use for the given category.
+
+        Note:
+            Returns 'white' for any category
+            not explicitly defined in the color mapping.
+        """
         colors = {
             "Coding": "bright_cyan",
             "CI-Stuff": "yellow",
@@ -444,7 +679,17 @@ class TodoCLI:
         return colors.get(category, "white")
 
     def run(self):
-        """Run the main CLI loop."""
+        """
+        Run the main CLI loop.
+
+        This method implements the main program loop, displaying the main menu
+        and handling user choices. It continues running until the user chooses
+        to exit the application.
+
+        The method manages the flow between different operations like adding,
+        showing, updating, completing,
+        and deleting todos, as well as showing statistics.
+        """
         while True:
             choice = self.display_menu(
                 "main", "\nUse arrow keys to navigate, Enter to select"
