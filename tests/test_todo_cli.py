@@ -103,7 +103,7 @@ class TestTodoCLI:
         Test the get_input method when a required field is initially empty.
         This test ensures that the method prompts for input again
         when a required field is left empty,
-        and accepts valid input afterwards.
+        and accepts valid input afterwards. 
         """
         with patch('mvp.cli.console.input') as mock_input:
             mock_input.side_effect = ["", "Valid input"]
