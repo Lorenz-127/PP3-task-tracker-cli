@@ -523,4 +523,13 @@ Even though I decided to use the pytest library for my automated tests, the insp
 
 ## Reflection and Future Improvements
 
+The Python language was fun overall and showed me many possibilities. I will definitely want to work more intensively with Python.
+
+As I wasn't able to realize the original idea, I will definitely make up for it and add all the features like:
+- Prioritizing tasks
+- Custom categories
+- Hybrid data storage
+- Multi user System
+- Cross device data check
+
 [Back to Top](#table-of-contents)
