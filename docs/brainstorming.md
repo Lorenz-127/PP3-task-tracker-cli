@@ -1,5 +1,4 @@
 ## Brainstorming PP3
-Here are five project ideas that fit within the criteria provided and are feasible within a 14-day timeframe. These projects focus on creating useful command-line applications using Python.
 
 ### 1. **Task Manager**
 **External User’s Goal:**
@@ -65,5 +64,3 @@ Here are five project ideas that fit within the criteria provided and are feasib
 - View workout history or filter by date range or exercise type.
 - Generate summary reports of total workout time and calories burned.
 - Export workout data to a file (e.g., CSV).
-
-Each of these project ideas involves managing a specific type of data, implementing a data model, and providing useful functionality to end-users. They can be developed within the 14-day period by following a structured approach and focusing on the core features.
