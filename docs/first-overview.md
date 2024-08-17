@@ -50,4 +50,4 @@ The Task Tracker CLI project is a command-line application designed to help user
   ```
 
 ### Conclusion
-This Task Tracker CLI project demonstrates the integration of a command-line interface with a database and rich terminal output. It serves as a practical example for managing tasks programmatically while showcasing the use of popular Python libraries such as Typer, Rich, and SQLite3. This project can be expanded and customized further to meet specific user requirements or integrated into larger applications.
+This Task Tracker CLI project demonstrates the integration of a command-line interface with a database and rich terminal output. It serves as a practical example for managing tasks programmatically while showcasing the use of popular Python libraries.

@@ -1,6 +1,6 @@
 
 
-Refined Project Overview: Advanced Todo List CLI Application
+Refined Project Overview: Task Tracker CLI Application
 
 The project aims to create a command-line interface (CLI) todo list application using Python. I'll start with basic functionality to meet pass criteria, then enhance it to achieve merit, and finally add advanced features for distinction.
 
