@@ -11,12 +11,13 @@
 02. [**Planning**](#planning)
 03. [**Data Model**](#data-model)
 04. [**Features**](#features)
-05. [**Technologies Used**](#technologies-used)
-06. [**Project Structure**](#project-structure)
-07. [**Testing**](#testing)
-08. [**Deployment**](#deployment)
-09. [**Credits**](#credits)
-10. [**Reflection and Future Improvements**](#reflection-and-future-improvements)
+05. [**Libraries**](#libraries)
+06. [**Technologies Used**](#technologies-used)
+07. [**Project Structure**](#project-structure)
+08. [**Testing**](#testing)
+09. [**Deployment**](#deployment)
+10. [**Credits**](#credits)
+11. [**Reflection and Future Improvements**](#reflection-and-future-improvements)
 
 ## Project Rationale
 
@@ -88,6 +89,8 @@ The primary target audience for this application includes:
         - Flexible categorization to separate academic, research, and personal tasks
         - Ability to quickly reprioritize tasks to adapt to changing deadlines
 
+[Back to Top](#table-of-contents)
+
 ## Planning
 
 1. [Brainstorming](/docs/brainstorming.md)
@@ -143,6 +146,8 @@ This approach allows us to:
 - Facilitate easier project contributions through a structured commit history
 
 For more details on my development approach, including my use of Conventional Commits, please refer to my [Development Approach](/docs/development-approach.md) document.
+
+[Back to Top](#table-of-contents)
 
 ## Data Model
 
@@ -209,6 +214,8 @@ This detailed flowchart provides a comprehensive view of your Todo List CLI appl
 6. Data Consistency: The chart includes a step to update remaining todo positions after deletion, showing attention to data integrity (D7).
 
 7. Integration with Google Sheets: The chart clearly shows how the application interacts with Google Sheets for data persistence, demonstrating the use of external APIs (D6).
+
+[Back to Top](#table-of-contents)
 
 ## Features
 
@@ -286,6 +293,8 @@ The Task Tracker CLI Application offers a robust set of features designed to enh
 
 These features have been carefully designed and implemented to create a powerful, yet user-friendly task management solution. The application aims to provide a streamlined experience for developers and productivity enthusiasts who prefer command-line interfaces, while offering the advanced functionalities typically found in GUI-based task management tools.
 
+[Back to Top](#table-of-contents)
+
 ## Libraries
 
 Here's a list of the libraries used in my project:
@@ -360,8 +369,10 @@ Here's a list of the libraries used in my project:
     - Allows for clear and concise test code, improving readability and maintainability.
     - Integrates well with other testing tools and CI/CD pipelines.
 
+[Back to Top](#table-of-contents)
 
 ## Technologies Used
+[Back to Top](#table-of-contents)
 
 
 ## Version Control
@@ -410,6 +421,8 @@ My development process heavily utilizes pull requests for code review and integr
 While not explicitly shown in the image, my GitHub workflow likely includes continuous integration processes that run automated tests and checks on each pull request, ensuring code quality and functionality before merging.
 
 This structured approach to version control and collaborative development ensures a high-quality, well-documented codebase that meets industry standards and facilitates efficient teamwork.
+
+[Back to Top](#table-of-contents)
 
 ## Deployment
 
@@ -480,6 +493,8 @@ Example:
 
 ![auto-test-cli](/resources/auto_test_cli.png)
 
+[Back to Top](#table-of-contents)
+
 ## Credits
 
 ### Content
@@ -508,9 +523,4 @@ Even though I decided to use the pytest library for my automated tests, the insp
 
 ## Reflection and Future Improvements
 
-fun
-stress
-original plan with more features
-more auto-test cases
-full stack app
-mobile app
+[Back to Top](#table-of-contents)
