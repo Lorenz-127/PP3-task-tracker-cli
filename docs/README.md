@@ -372,6 +372,37 @@ Here's a list of the libraries used in my project:
 [Back to Top](#table-of-contents)
 
 ## Technologies Used
+
+### Tools Used
+
+- **[Github](https://github.com/Lorenz-127/)**: Used for storage of my site and for publishing online.
+- **[Gitpod](https://codeinstitute-ide.net/workspaces)**: The IDE used for editing my site and pushing changes.
+- **[Python](https://www.python.org/)**: Used python 3.12.2 to code the cli app.
+- **[HTML](https://en.wikipedia.org/wiki/HTML)**: For the background of the Heroku site.
+- **[CSS](https://en.wikipedia.org/wiki/CSS)**: CSS was used to style the website and define fonts and layout.
+- **[JavaScript](https://en.wikipedia.org/wiki/JavaScript)**: JavaScript was used to resize the Terminal.
+- **[Slack](https://slack.com/intl/en-gb/)**: Slack to communicate with my Mentor, Peers and get some help and infos.
+- **[ScreenToGif](https://www.screentogif.com/)**: Screen recorder with an integrated editor to make my gif's.
+- **MS-Paint**: To resize some of my .png's.
+
+### Resources Used
+
+- **[Code Institute learning materials](https://codeinstitute.net/)**: For providing comprehensive learning resources and guidance throughout the development process.
+
+- **[Python documentation](https://www.python.org/doc/)**: For detailed explanations and references that assisted in implementing various functionalities.
+
+- **[Heroku](https://www.heroku.com/)**: The platform provided seamless deployment and hosting services for the application.
+
+- **[Google Sheets API](https://developers.google.com/sheets/api/guides/concepts)**: Integration with the API enabled efficient data management and storage.
+
+- **[Rich Library](https://pypi.org/project/rich/)**: The Rich library enhanced the terminal interface with colorful styling and table formatting.
+
+- **[Draw.io](https://app.diagrams.net/)**: For Flowchart, ER-Diagram, and Sequence Diagram.
+
+- **[Obsidian](https://obsidian.md/)**: Obsidian is the private and flexible writing app that adapts to the way you think.
+
+- **[AnythingLLM](https://anythingllm.com/)**:  Desktop AnythingLLM only talks to the services you explicitly connect to and can run fully on your machine without internet connectivity. To organize my project files and use my obsidian notes as a Knowledge base for faster planning and structural help.
+
 [Back to Top](#table-of-contents)
 
 
