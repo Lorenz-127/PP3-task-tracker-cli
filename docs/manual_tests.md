@@ -57,10 +57,10 @@ Steps:
 5. Keep the existing category and due date
 Expected Result: The todo's description is updated, and a confirmation message is displayed
 
-![Screenshot](/resources/manual_test_1.png)
+![Screenshot](/resources/update_todo.gif)
 
 Actual Result:
-Pass/Fail:
+- Pass
 
 ## 4. Completing a Todo
 
@@ -73,10 +73,10 @@ Steps:
 4. Confirm the action
 Expected Result: The todo is marked as complete, and a confirmation message is displayed
 
-![Screenshot](/resources/manual_test_1.png)
+![Screenshot](/resources/complet_todo.gif)
 
 Actual Result:
-Pass/Fail:
+- Pass
 
 ## 5. Deleting a Todo
 
@@ -89,10 +89,10 @@ Steps:
 4. Confirm the deletion
 Expected Result: The todo is removed from the list, and a confirmation message is displayed
 
-![Screenshot](/resources/manual_test_1.png)
+![Screenshot](/resources/deleting_todo.gif)
 
 Actual Result:
-Pass/Fail:
+- Pass
 
 ## 6. Viewing Statistics
 
@@ -103,7 +103,7 @@ Steps:
 2. Select "Show Statistics" from the main menu
 Expected Result: Statistics are displayed, including total todos, completed todos, overdue todos, and todos by category
 
-![Screenshot](/resources/manual_test_1.png)
+![Screenshot](/resources/show_statistics.gif)
 
 Actual Result:
-Pass/Fail:
+- Pass
