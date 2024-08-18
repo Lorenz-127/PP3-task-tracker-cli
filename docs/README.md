@@ -33,17 +33,16 @@ The Task Tracker CLI Application is a command-line interface tool designed to pr
     - [Extensibility and Integration](#extensibility-and-integration)
 05. [**Libraries**](#libraries)
 06. [**Technologies Used**](#technologies-used)
-07. [**Project Structure**](#project-structure)
-08. [**Testing**](#testing)
+07. [**Testing**](#testing)
     - [PEP8 Testing Validation](#pep8-testing)
     - [Manual Testing Procedures for Task Tracker CLI](#manual-testing-procedures-for-task-tracker-cli)
         - [Manual Tests](/docs/manual_tests.md)
     - [Automated Testing Procedures for Task Tracker CLI](#automated-testing-procedures-for-task-tracker-cli)
         - [Automated Testing Manual](#automated-testing-manual)
-09. [**Version Control**](#version-control)
-10. [**Deployment**](#deployment)
-11. [**Credits**](#credits)
-12. [**Reflection and Future Improvements**](#reflection-and-future-improvements)
+08. [**Version Control**](#version-control)
+09. [**Deployment**](#deployment)
+10. [**Credits**](#credits)
+11. [**Reflection and Future Improvements**](#reflection-and-future-improvements)
 
 ## Project Rationale
 
