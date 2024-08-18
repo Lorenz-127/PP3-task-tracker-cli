@@ -1,5 +1,7 @@
 # Manual Testing Procedures for Task Tracker CLI
 
+Back to [README.md](README.md)
+
 ## 1. Adding a Todo
 
 ### Test Case 1.1
@@ -107,3 +109,5 @@ Expected Result: Statistics are displayed, including total todos, completed todo
 
 Actual Result:
 - Pass
+
+[Back to Top](#manual-testing-procedures-for-task-tracker-cli)

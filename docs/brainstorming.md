@@ -1,6 +1,8 @@
-## Brainstorming PP3
+# Brainstorming PP3
 
-### 1. **Task Manager**
+Back to [README.md](README.md)
+
+## 1. **Task Manager**
 **External User’s Goal:**
 - The user wants to manage their daily tasks efficiently.
 
@@ -13,7 +15,7 @@
 - Edit or delete tasks as needed.
 - Export the task list to a file (e.g., CSV).
 
-### 2. **Expense Tracker**
+## 2. **Expense Tracker**
 **External User’s Goal:**
 - The user wants to track their expenses to manage their budget better.
 
@@ -26,7 +28,7 @@
 - Generate a summary of total spending and spending by category.
 - Export expense data to a file (e.g., CSV).
 
-### 3. **Library Inventory System**
+## 3. **Library Inventory System**
 **External User’s Goal:**
 - A librarian wants to manage a small library's inventory of books.
 
@@ -39,7 +41,7 @@
 - Edit or delete book entries.
 - Export the library inventory to a file (e.g., CSV).
 
-### 4. **Recipe Manager**
+## 4. **Recipe Manager**
 **External User’s Goal:**
 - The user wants to organize and access their favorite recipes easily.
 
@@ -52,7 +54,7 @@
 - Edit or delete recipes.
 - Export recipes to a file (e.g., PDF).
 
-### 5. **Fitness Tracker**
+## 5. **Fitness Tracker**
 **External User’s Goal:**
 - The user wants to log their workouts and track fitness progress.
 
@@ -64,3 +66,5 @@
 - View workout history or filter by date range or exercise type.
 - Generate summary reports of total workout time and calories burned.
 - Export workout data to a file (e.g., CSV).
+
+[Back to Top](#brainstorming-pp3)

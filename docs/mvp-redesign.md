@@ -1,5 +1,7 @@
 # Updated Project Scope - Task Tracker CLI
 
+Back to [README.md](README.md)
+
 ## 1. Core Functionality
 
 - Create, Read, Update, and Delete (CRUD) operations for todo items
@@ -85,3 +87,5 @@
 - Utilizes version control effectively
 
 This MVP approach allows for demonstration of key Python skills and meets core project requirements while accommodating challenging personal circumstances. The project can be further developed to incorporate more advanced features and optimizations as time allows.
+
+[Back to Top](#updated-project-scope---task-tracker-cli)

@@ -1,5 +1,9 @@
 # Task Tracker CLI Application
 
+The Task Tracker CLI Application is a command-line interface tool designed to provide a powerful, efficient task management solution
+
+[Deployed App](https://task-traker-f4de740956e7.herokuapp.com/)
+
 ![Task-Tracker-CLI](/resources/task_tracker_cli_show_all.png)
 
 ## Table of Contents
@@ -9,15 +13,37 @@
     - [Target Audience](#target-audience)
     - [User Stories](#user-stories)
 02. [**Planning**](#planning)
+    - [Brainstorming](#brainstorming)
+    - [Basic Idea](#basic-idea)
+    - [First Overview](#first-overview)
+    - [Refined Project Overview](#refined-project-overview)
+    - [Development Approach](#development-approach)
+    - [Roadmap and Criteria Checklist](#roadmap-and-criteria-checklist)
+    - [Refactoring the Project Scope](#refactoring-the-project-scope)
 03. [**Data Model**](#data-model)
+    - [ER-Diagram](#er-diagram)
+    - [Sequence Diagram](#sequence-diagram)
+    - [Flowchart](#flowchart)
 04. [**Features**](#features)
+    - [Core Task Management](#core-task-management)
+    - [Advanced Organization](#advanced-organization)
+    - [User Experience Enhancements](#user-experience-enhancements)
+    - [Productivity Insights](#productivity-insights)
+    - [Security and Data Integrity](#security-and-data-integrity)
+    - [Extensibility and Integration](#extensibility-and-integration)
 05. [**Libraries**](#libraries)
 06. [**Technologies Used**](#technologies-used)
 07. [**Project Structure**](#project-structure)
 08. [**Testing**](#testing)
-09. [**Deployment**](#deployment)
-10. [**Credits**](#credits)
-11. [**Reflection and Future Improvements**](#reflection-and-future-improvements)
+    - [PEP8 Testing Validation](#pep8-testing)
+    - [Manual Testing Procedures for Task Tracker CLI](#manual-testing-procedures-for-task-tracker-cli)
+        - [Manual Tests](/docs/manual_tests.md)
+    - [Automated Testing Procedures for Task Tracker CLI](#automated-testing-procedures-for-task-tracker-cli)
+        - [Automated Testing Manual](#automated-testing-manual)
+09. [**Version Control**](#version-control)
+10. [**Deployment**](#deployment)
+11. [**Credits**](#credits)
+12. [**Reflection and Future Improvements**](#reflection-and-future-improvements)
 
 ## Project Rationale
 
@@ -87,26 +113,26 @@ The primary target audience for this application includes:
     - User Benefits:
         - Distraction-free task management that aligns with her technical background
         - Flexible categorization to separate academic, research, and personal tasks
-        - Ability to quickly reprioritize tasks to adapt to changing deadlines
+        - Ability to quickly re-prioritize tasks to adapt to changing deadlines (future feature)
 
 [Back to Top](#table-of-contents)
 
 ## Planning
 
-1. [Brainstorming](/docs/brainstorming.md)
-    - Process of finding the App Idea.
-2. [Basic Idea](/docs/basic-idea.md)
-    - Brainstorm about the chosen idea
-3. [First overview](/docs/first-overview.md)
-    - Outline the first high level overview
-4. [Refined Project overview](/docs/refined-overview.md)
-    - Refine and structure the idea with project needs
-5. [Roadmap and Criteria Checklist](/docs/roadmap-checklist.md)
-    - Create a Agile "ish" (Issues, Tasks, and Milestones) Roadmap combined with assessment criteria.
-6. [Development Approach](/docs/development-approach.md)
-    - Outline of my development methodology and practices
-7. [Refactoring the Project Scope](/docs/mvp-redesign.md)
-    - Due to the sudden death of my father, I had to look after the family in Switzerland. I was therefore unable to build the app as originally planned. I'm building a smaller MVP version of the original approach, but still with best practices.
+### [Brainstorming](/docs/brainstorming.md)
+- Process of finding the App Idea.
+### [Basic Idea](/docs/basic-idea.md)
+- Brainstorm about the chosen idea
+### [First overview](/docs/first-overview.md)
+- Outline the first high level overview
+### [Refined Project overview](/docs/refined-overview.md)
+- Refine and structure the idea with project needs
+### [Development Approach](/docs/development-approach.md)
+- Outline of my development methodology and practices
+### [Roadmap and Criteria Checklist](/docs/roadmap-checklist.md)
+- Create a Agile "ish" (Issues, Tasks, and Milestones) Roadmap combined with assessment criteria.
+### [Refactoring the Project Scope](/docs/mvp-redesign.md)
+- Due to the sudden death of a close family member, I had to look after my family in Switzerland. I was therefore unable to build the app as originally planned. I'm building a smaller MVP version of the original approach, but still with best practices.
     
 ### Conventional Commits
 
@@ -535,7 +561,7 @@ Example:
 
 ### Inspiration
 
-- [Patrick Loeber's](https://www.youtube.com/watch?v=ynd67UwG_cI&pp=ygUNdG9kbyBsaXN0IGNsaQ%3D%3D) tutorial gave me the basic idea for the app.
+- [Patrick Loeber's](https://www.youtube.com/watch?v=ynd67UwG_cI&pp=ygUNdG9kbyBsaXN0IGNsaQ%3D%3D) tutorial gave me the basic idea for a starting point for the build.
 - [Corey Schafer](https://www.youtube.com/@coreyms)
 Python Tutorial: [Unit Testing Your Code with the unittest Module](https://www.youtube.com/watch?v=6tNS--WetLI&t=668s)
 Even though I decided to use the pytest library for my automated tests, the inspiration came from Corey Schafer's tutorial. I gathered the necessary knowledge from the official documentation [pytest documentation](https://docs.pytest.org/en/stable/index.html).

@@ -1,7 +1,11 @@
 
-## Advanced Todo List CLI Application - Project Concept
+# Basic Idea
 
-- The Advanced Todo List CLI Application is a command-line tool designed to help users manage their tasks efficiently. It aims to combine the simplicity and speed of a command-line interface with the power and features typically found in graphical todo applications.
+Back to [README.md](README.md)
+
+## Task Tracker CLI Application - Project Concept
+
+- The Task Tracker CLI Application is a command-line tool designed to help users manage their tasks efficiently. It aims to combine the simplicity and speed of a command-line interface with the power and features typically found in graphical todo applications.
 
 ## Core Concept:
 - Users interact with the application entirely through the command line, performing actions like adding tasks, marking them as complete, categorizing them, and viewing their todo list. As the project progresses, more advanced features will be added to enhance task management capabilities.
@@ -34,3 +38,5 @@
 - This application is designed for individuals comfortable with command-line interfaces, such as developers, system administrators, or tech-savvy professionals who prefer keyboard-driven workflows and appreciate the efficiency of CLI tools.
 
 By focusing on both functionality and user experience within the constraints of a CLI, this project aims to create a powerful, efficient, and unique task management tool that demonstrates a range of Python programming skills and software development best practices.
+
+[Back to Top](#basic-idea)

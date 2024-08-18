@@ -1,6 +1,8 @@
 
 # Data Model Documentation
 
+Back to [README.md](README.md)
+
 This data model represents a hybrid approach where task content is stored in Google Sheets for easy sharing and collaboration, while metadata and user information are stored locally in JSON files for improved security and performance.
 ## Google Sheets Structure
 

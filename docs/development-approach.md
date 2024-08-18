@@ -1,5 +1,7 @@
 # Development Approach
 
+Back to [README.md](README.md)
+
 ## Table of Contents
 1. [Introduction](#introduction)
 2. [Modular Approach](#modular-approach)
@@ -57,7 +59,7 @@ Types used include:
 11. revert: Reverts a previous commit
 
 ## Data Structure
-I implement a refined hybrid data storage solution, as detailed in my [Data Model Documentation](/docs/data-model-documentation.md):
+I implement a refined hybrid data storage solution, as detailed in my [Data Model Documentation](/docs/data-model-documentation-mvp.md):
 
 ### Google Sheets (Cloud Storage)
 - Task content (title, content, status, category, completion date)
@@ -127,7 +129,7 @@ my testing strategy evolves through the development phases:
 - Enhance and document comprehensive manual testing procedures (Merit level)
 - Implement unit tests for critical functions and consider integration tests (Distinction level)
 
-Detailed testing procedures will be documented in a separate testing document.
+Detailed testing procedures will be documented in [Testing section](README.md#testing) of the README and [Manual-Tests](/docs/manual_tests.md) on a separate testing document.
 
 ## Documentation
 my documentation process includes:
@@ -135,7 +137,7 @@ my documentation process includes:
 - Enhancing README with project rationale, detailed user instructions, and flow charts/diagrams (Merit level)
 - Creating comprehensive API documentation, detailed setup guide, and usage examples (Distinction level)
 
-my documentation approach is reflected in my [README.md](/docs/refined-overview.md) structure and content.
+my documentation approach is reflected in my [README.md](README.md#refined-project-overview) structure and content.
 
 ## Deployment
 my deployment strategy progresses through the development phases:
@@ -144,11 +146,18 @@ my deployment strategy progresses through the development phases:
 - Ensure deployed application is optimized for performance and execute a flawless deployment with additional optimizations (Distinction level)
 
 ## Project Management
-We use GitHub Issues and Projects for task tracking and project management. my approach includes:
-- Creating and managing issues for features, bugs, and tasks
-- Organizing work into milestones aligned with my development phases
-- Using project boards to visualize workflow and track progress
+~~I plan to use GitHub Issues and Projects for task tracking and project management. my approach includes:~~
+
+- ~~Creating and managing issues for features, bugs, and tasks~~
+
+- ~~Organizing work into milestones aligned with my development phases~~
+
+- ~~Using project boards to visualize workflow and track progress~~
+
+Due to the change in scope I use Obsidian as a planning tool. A reflection of my planning process is well documented in the [Planning section](README.md#planning)
 
 This development approach is designed to ensure we meet all criteria levels systematically, demonstrating clear progression in coding skills, project management, and attention to user needs. We'll use Conventional Commits throughout the development process to maintain clear version control and project history.
 
-For a visual representation of my application's structure and logic, please refer to my [flowcharts](/docs/flowcharts.md).
+For a visual representation of my application's structure and logic, please refer to my [flowcharts](README.md#data-model).
+
+[Back to Top](#table-of-contents)

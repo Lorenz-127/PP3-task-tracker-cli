@@ -1,5 +1,7 @@
 # Data Model Documentation
 
+Back to [README.md](README.md)
+
 This ER diagram is based on the mvp structure Python files, specifically the `Todo` class in `model.py` and the table structures implied by `google_sheets_db.py`. Here's a breakdown of the entities and their relationships:
 
 ![ER-diagram-MVP](/resources/ER-diagramm.mvp.png)

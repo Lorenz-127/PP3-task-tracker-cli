@@ -1,10 +1,12 @@
 
 
-Refined Project Overview: Task Tracker CLI Application
+# Refined Project Overview: Task Tracker CLI Application
+
+Back to [README.md](README.md)
 
 The project aims to create a command-line interface (CLI) todo list application using Python. I'll start with basic functionality to meet pass criteria, then enhance it to achieve merit, and finally add advanced features for distinction.
 
-Data Structure:
+## Data Structure:
 I'll use a google sheet as database with a single table for todos. The table structure will evolve as I progress:
 
 1. Pass Level:
@@ -17,7 +19,7 @@ I'll use a google sheet as database with a single table for todos. The table str
 3. Distinction Level:
    - Add fields: date_completed (text), priority (integer)
 
-Feature Planning:
+## Feature Planning:
 
 1. Pass Level Features:
    - Basic CRUD operations:
@@ -54,7 +56,7 @@ Feature Planning:
    - Create detailed documentation including setup guide and usage examples
    - Implement data export/import functionality
 
-Implementation Plan:
+## Implementation Plan:
 
 1. Pass Level Implementation:
    - Set up basic project structure
@@ -80,3 +82,5 @@ Implementation Plan:
    - Finalize comprehensive documentation
 
 This plan ensures I meet all criteria levels systematically, demonstrating clear progression in coding skills, project management, and attention to user needs. I'll use Conventional Commits throughout the development process to maintain clear version control and project history.
+
+[Back to Top](#refined-project-overview-task-tracker-cli-application)
